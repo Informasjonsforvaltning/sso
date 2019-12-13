@@ -1,19 +1,42 @@
+FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_BUILD_ENVIRONMENT
+
+# use maven environment to build java modules
+
+RUN mkdir /tmp/rest-user-mapper
+RUN mkdir /tmp/whitelisted-email-validator
+
+COPY modules/rest-user-mapper/pom.xml /tmp/rest-user-mapper/
+COPY modules/rest-user-mapper/src /tmp/rest-user-mapper/src/
+
+WORKDIR /tmp/rest-user-mapper/
+RUN mvn clean package --no-transfer-progress
+
+COPY modules/whitelisted-email-validator/pom.xml /tmp/whitelisted-email-validator/
+COPY modules/whitelisted-email-validator/src /tmp/whitelisted-email-validator/src/
+
+WORKDIR /tmp/whitelisted-email-validator
+RUN mvn clean package --no-transfer-progress
+
+###################################
+
 FROM jboss/keycloak:6.0.1
 
 ENV DB_VENDOR h2
 
-# 1. copy keycloak theme as fdk theme.
+# copy deployment modules from maven environment
+# deployments are compiled SPI implementation modules. E.g. Federated rest user storage module.
+COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/jboss/keycloak/standalone/deployments/rest-user-mapper.jar
+COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/whitelisted-email-validator/target/whitelisted-email-validator.jar /opt/jboss/keycloak/standalone/deployments/whitelisted-email-validator.jar
+
+# copy keycloak theme as fdk theme.
 RUN cp -r /opt/jboss/keycloak/themes/keycloak /opt/jboss/keycloak/themes/fdk
 RUN cp -r /opt/jboss/keycloak/themes/keycloak /opt/jboss/keycloak/themes/fdk-choose-provider
 
-# 2. copy modified files from host ( 3 files) - trying to copy only changed files...
+# copy modified files from host ( 3 files) - trying to copy only changed files...
 COPY themes/fdk /opt/jboss/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/jboss/keycloak/themes/fdk-choose-provider
 
 COPY tools /opt/fdk/tools
-
-# deployments are compiled SPI implementation modules. E.g. Federated rest user storage module.
-COPY deployments /opt/jboss/keycloak/standalone/deployments
 
 # On service (re)start the stored keycloak state will be compared with the previously exported state, missing components will be restored.
 # The restoration of the realms are ignored during startup if they already exist, an update script is run after startup to ensure they are completely up to date.
