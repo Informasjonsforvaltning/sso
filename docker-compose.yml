@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+
+  postgres:
+    image: postgres:11.2
+    restart: always
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  sso:
+    build: ../sso
+    volumes:
+      - ../sso/export:/tmp/keycloak/export
+      - ../sso/import:/tmp/keycloak/import
+      - ../sso/import-template:/tmp/keycloak/import-template
+      - ../sso/tools:/opt/fdk/tools
+    environment:
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=postgres
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_SCHEMA=public
+      - DB_PASSWORD=password
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - SSO_HOST=http://localhost:8084
+      - REGISTRATION_HOST=http://localhost:8098
+      - DEV_REGISTRATION_HOST=http://localhost:4301
+      - CONCEPT_CATALOGUE_HOST=http://localhost:8202
+      - DEV_CONCEPT_CATALOGUE_HOST=http://localhost:8203
+      - FDK_ADMIN_GUI_HOST=http://localhost:8136
+      - DEV_FDK_ADMIN_GUI_HOST=http://localhost:8137
+      - RECORDS_OF_PROCESSING_ACTIVITIES_GUI_HOST=http://localhost:8140
+      - DEV_RECORDS_OF_PROCESSING_ACTIVITIES_GUI_HOST=http://localhost:8141
+      # This is local mock for ID-Porten, use this in dev, ut1 and st1. in it1 use idporten test, and in prod use idporten prod
+      - IDPORTEN_OIDC_ROOT=http://localhost:8084/auth/realms/idporten-mock
+      - IDPORTEN_CLIENT_ID=oidc_brreg_fellesdatakatalog
+      - IDPORTEN_CLIENT_SECRET=29a2cfe1-1a61-4a04-bf84-64d70a340d04
+    depends_on:
+      - postgres
+    ports:
+      - "8084:8084"
