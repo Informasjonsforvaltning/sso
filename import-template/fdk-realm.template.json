@@ -368,6 +368,17 @@
     "fullScopeAllowed" : true,
     "nodeReRegistrationTimeout" : -1,
     "protocolMappers" : [ {
+      "id" : "5b5d1f51-2e9f-4e3d-84fe-d6bea2c9538f",
+      "name" : "include registration-api audience",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-audience-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "included.client.audience" : "fdk-registration-api",
+        "id.token.claim" : "false",
+        "access.token.claim" : "true"
+      }
+    }, {
       "id" : "d1aefb4d-e945-49aa-83d8-8178bb16def1",
       "name" : "Include authorities attribute in tokens",
       "protocol" : "openid-connect",
@@ -801,6 +812,17 @@
         "id.token.claim" : "false",
         "access.token.claim" : "true",
         "userinfo.token.claim" : "false"
+      }
+    }, {
+      "id" : "09ea0a45-912e-44f9-8df4-c10cc1fdd4ea",
+      "name" : "include records-of-processing-activities audience",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-audience-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "included.client.audience" : "records-of-processing-activities",
+        "id.token.claim" : "false",
+        "access.token.claim" : "true"
       }
     } ],
     "defaultClientScopes" : [ "web-origins", "role_list", "roles", "profile", "email" ],
