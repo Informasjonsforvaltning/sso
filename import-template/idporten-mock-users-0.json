@@ -404,8 +404,8 @@
     },
     "credentials" : [ {
       "type" : "password",
-      "hashedSaltedValue" : "uUKnLepHpm0K75Une+0PUoR8gP4Tys5Ry3tIrGe/wUcoradqp4/gG36HC75/DfLMnk+IZ5wnNyiWg1fbslWasg==",
-      "salt" : "TsH7/DK9tNZ9Po5l78oL3g==",
+      "hashedSaltedValue" : "7LYQwiwnLPOGcGjM7gAk4pfOIbvZX/U6SNTEYkhUZtLy4sDteoiMGld6n2ap1zeox3nRIotKWQwuMmlO3D0cxg==",
+      "salt" : "fsL9kv8v6KpRg0KVYloVUw==",
       "hashIterations" : 27500,
       "counter" : 0,
       "algorithm" : "pbkdf2-sha256",
@@ -856,8 +856,8 @@
     },
     "credentials" : [ {
       "type" : "password",
-      "hashedSaltedValue" : "yV8crwMYkHdeRr4lIDAclczmgqbEa+s7+sp7yvYGrh9ySk9lksvibN0g8GahpJJmgo7qDcvD8b3lpUyWfUDa9g==",
-      "salt" : "MwME8yK9R7hhciCpFkLrCg==",
+      "hashedSaltedValue" : "S1uotJSGQxRgdTE1jhxdQ5wzE1b3Cj9EC6iV5SOqxiU/i1QLnTfuiecPVg7EUHTW30RuMLA5JsvLHiHdan1gLw==",
+      "salt" : "7SKNaK8CfANjiTkkyBvm/A==",
       "hashIterations" : 27500,
       "counter" : 0,
       "algorithm" : "pbkdf2-sha256",
