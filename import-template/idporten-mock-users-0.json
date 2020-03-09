@@ -875,6 +875,38 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "a023bd03-65f1-4e94-8ae3-23fcd9070978",
+    "createdTimestamp" : 1583753819565,
+    "username" : "tas",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tor Arild",
+    "lastName" : "Sunnevåg",
+    "attributes" : {
+      "pid" : [ "01018800035" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "0trd2fwzxDRkSRMcTjGimXf2iuYlKQhQORK1WfxKAbiFevq7l7ArfwhySU8BRxUHN+zgd6wcInhvQoYtKl9o4w==",
+      "salt" : "T0Ai9bKGLpZ63gPN3v8pcA==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1583753855463,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "a43508db-38e3-4fb6-9bbb-ab3b4555ad40",
     "createdTimestamp" : 1571667958191,
     "username" : "te",
