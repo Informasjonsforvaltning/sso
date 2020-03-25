@@ -1941,6 +1941,33 @@
           "protocolMapper": "saml-role-list-mapper"
         }
       ]
+    },
+    {
+      "id": "6edce0cf-b518-4765-86d1-adc521a2b85f",
+      "name": "authorities",
+      "description": "Create fdk-roles from difi attributes",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "id": "7d82daae-4278-4dab-b5ef-ce558bb485b3",
+          "name": "map authorities",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-script-based-protocol-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "authorities",
+            "jsonType.label": "String",
+            "script": "var ArrayList = Java.type(\"java.util.ArrayList\");\nvar forEach = Array.prototype.forEach;\n\n// A list of organizations that difi has associated with the user\nvar orgs = user.getAttribute(\"orgnr\");\n\n// The four roles a user can get from difi\nvar editor = \"brukar editor\";\nvar author = \"brukar author\";\nvar contributor = \"brukar contributor\";\nvar subscriber = \"brukar subscriber\";\n\n// Four fdk roles, sys-admin, org-admin, org-write and org-read\nvar sysAdmin = \"system:root:admin\";\n\nfunction orgAdmin(orgnr) {\n    return \"organization:\" + orgnr + \":admin\";\n}\n\nfunction orgWrite(orgnr) {\n    return \"organization:\" + orgnr + \":write\";\n}\n\nfunction orgRead(orgnr) {\n    return \"organization:\" + orgnr + \":read\";\n}\n\n// Mapped fdk roles will be added to this list\nvar authorities = new ArrayList();\n\nforEach.call(user.getAttribute(\"difi_roles\"), function(role) {\n    if (role === editor) {\n        // Editor from difi -> fdk sys-admin\n        authorities.add(sysAdmin);\n    } else if (role === author) {\n        forEach.call(orgs, function(orgnr) {\n            // Author from difi -> fdk org-admin\n            authorities.add(orgAdmin(orgnr));\n        });\n    } else if (role === contributor) {\n        forEach.call(orgs, function(orgnr) {\n            // Contributor from difi -> fdk org-write\n            authorities.add(orgWrite(orgnr));\n        });\n    } else if (role === subscriber) {\n        forEach.call(orgs, function(orgnr) {\n            // Subscriber from difi -> fdk org-read\n            authorities.add(orgRead(orgnr));\n        });\n    }\n});\n\n// The roles is added to the token as a comma seperated list\nvar authoritiesString = \"\";\nvar seperator = \",\";\n\nforEach.call(authorities, function(auth) {\n    if (authoritiesString !== \"\") {\n        authoritiesString += seperator;    \n    }\n\n    authoritiesString += auth;\n});\n\nexports = authoritiesString;"
+          }
+        }
+      ]
     }
   ],
   "components": {
@@ -2100,6 +2127,26 @@
       "identityProviderAlias": "idporten-oidc",
       "identityProviderMapper": "oidc-username-idp-mapper",
       "name": "username template"
+    },
+    {
+      "id": "671fd6ff-6da8-4e14-ac8d-16e5438b1dfe",
+      "name": "orgnr",
+      "identityProviderAlias": "${DIFI_CLIENT_ID}",
+      "identityProviderMapper": "oidc-user-attribute-idp-mapper",
+      "config": {
+        "claim": "organization.number",
+        "user.attribute": "orgnr"
+      }
+    },
+    {
+      "id": "c4200179-03fc-4de4-9957-f40d526490d7",
+      "name": "difi_roles",
+      "identityProviderAlias": "${DIFI_CLIENT_ID}",
+      "identityProviderMapper": "oidc-user-attribute-idp-mapper",
+      "config": {
+        "claim": "realm_access.roles",
+        "user.attribute": "difi_roles"
+      }
     }
   ],
   "identityProviders": [
@@ -2164,6 +2211,37 @@
       "storeToken": false,
       "trustEmail": false,
       "updateProfileFirstLoginMode": "on"
+    },
+    {
+      "alias": "${DIFI_CLIENT_ID}",
+      "internalId": "5c3fdeee-512a-438c-81c1-586cb6dbb81f",
+      "providerId": "keycloak-oidc",
+      "enabled": true,
+      "updateProfileFirstLoginMode": "on",
+      "trustEmail": false,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "authenticateByDefault": false,
+      "linkOnly": false,
+      "firstBrokerLoginFlowAlias": "first broker login",
+      "config": {
+        "hideOnLoginPage": "",
+        "validateSignature": "true",
+        "userInfoUrl": "${DIFI_USER_INFO_URL}",
+        "uiLocales": "",
+        "tokenUrl": "${DIFI_OIDC_TOKEN_URL}",
+        "clientId": "${DIFI_CLIENT_ID}",
+        "jwksUrl": "${DIFI_OIDC_JWKS_URL}",
+        "backchannelSupported": "",
+        "issuer": "${DIFI_OIDC_ISSUER}",
+        "useJwksUrl": "true",
+        "loginHint": "",
+        "authorizationUrl": "${DIFI_OIDC_AUTHORIZATION_URL}",
+        "disableUserInfo": "",
+        "logoutUrl": "${DIFI_OIDC_LOGOUT_URL}",
+        "clientSecret": "${DIFI_CLIENT_SECRET}",
+        "guiOrder": "3"
+      }
     }
   ],
   "internationalizationEnabled": false,

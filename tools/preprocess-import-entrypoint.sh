@@ -81,6 +81,14 @@ sed -e 's,${IDPORTEN_CLIENT_ID},'$IDPORTEN_CLIENT_ID',g' \
  -e 's,${DEV_RECORDS_OF_PROCESSING_ACTIVITIES_GUI_HOST},'$DEV_RECORDS_OF_PROCESSING_ACTIVITIES_GUI_HOST',g' \
  -e 's,${SSO_HOST},'$SSO_HOST',g' \
  -e 's,${FDK_LOCAL_SECRET},'$FDK_LOCAL_SECRET',g' \
+ -e 's,${DIFI_CLIENT_ID},'$DIFI_CLIENT_ID',g' \
+ -e 's,${DIFI_CLIENT_SECRET},'$DIFI_CLIENT_SECRET',g' \
+ -e 's,${DIFI_OIDC_TOKEN_URL},'$DIFI_OIDC_TOKEN_URL',g' \
+ -e 's,${DIFI_OIDC_JWKS_URL},'$DIFI_OIDC_JWKS_URL',g' \
+ -e 's,${DIFI_OIDC_AUTHORIZATION_URL},'$DIFI_OIDC_AUTHORIZATION_URL',g' \
+ -e 's,${DIFI_OIDC_LOGOUT_URL},'$DIFI_OIDC_LOGOUT_URL',g' \
+ -e 's,${DIFI_OIDC_ISSUER},'$DIFI_OIDC_ISSUER',g' \
+ -e 's,${DIFI_USER_INFO_URL},'$DIFI_USER_INFO_URL',g' \
    </tmp/keycloak/import-template/fdk-realm.template.json >/tmp/keycloak/import/overwrite/fdk-realm.json
 
 sed -e 's,${FDK_LOCAL_SECRET},'$FDK_LOCAL_SECRET',g' \
