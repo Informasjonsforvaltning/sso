@@ -1104,7 +1104,7 @@
         "${DEV_DATASERVICE_CATALOG_GUI_HOST}/*",
         "/*"
       ],
-      "rootUrl": "${DEV_DATASERVICE_CATALOG_GUI_HOST}",
+      "rootUrl": "${DATASERVICE_CATALOG_GUI_HOST}",
       "serviceAccountsEnabled": false,
       "standardFlowEnabled": true,
       "surrogateAuthRequired": false,
