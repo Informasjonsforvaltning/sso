@@ -1657,6 +1657,35 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "e91fa92f-1be5-4263-9419-de0100632023",
+    "createdTimestamp" : 1588240186912,
+    "username" : "tt",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tore",
+    "lastName" : "Tilsyn",
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "riXrMUGvaCJCS6UCf+Y/g54p3yZAlWjTL9Sl879dTnoUwd6DTP/ZFUlPYVQOSjhLVmt5Kzd70Ndns0Z4FDNVXg==",
+      "salt" : "rdIc55Gta4ml+1bxniJLrw==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1588240222035,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "2f0f42b9-2349-48cf-86d1-7f63f62f366e",
     "createdTimestamp" : 1571668335184,
     "username" : "un",
