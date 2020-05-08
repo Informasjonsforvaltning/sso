@@ -1518,8 +1518,8 @@
     },
     "credentials" : [ {
       "type" : "password",
-      "hashedSaltedValue" : "UwglvWBFA9XAo7JQj4raiJVQCcqiUXNyRv8NukX3koi17vOXXppYJw590ahy1q31asQSwO0AHl8fyyrGSE+plw==",
-      "salt" : "+76a9n5HFvmgiop1EV9gYA==",
+      "hashedSaltedValue" : "ShKVirf1lDd5SDgnm8SbZWJsGgk7EgD+utnzkvu3zf0Wdq7Ew+BQ+TUZvEJ8dy1YsSEglAIet0rrO1zZXFxIOg==",
+      "salt" : "g4gt1KwBXQz9h834LnnCBQ==",
       "hashIterations" : 27500,
       "counter" : 0,
       "algorithm" : "pbkdf2-sha256",
@@ -1665,6 +1665,9 @@
     "emailVerified" : false,
     "firstName" : "Tore",
     "lastName" : "Tilsyn",
+    "attributes" : {
+      "pid" : [ "01018800058" ]
+    },
     "credentials" : [ {
       "type" : "password",
       "hashedSaltedValue" : "riXrMUGvaCJCS6UCf+Y/g54p3yZAlWjTL9Sl879dTnoUwd6DTP/ZFUlPYVQOSjhLVmt5Kzd70Ndns0Z4FDNVXg==",
