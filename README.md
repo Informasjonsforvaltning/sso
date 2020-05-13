@@ -20,12 +20,20 @@ open attributes
 verify fdk _access values
 
 # Themes - Developing on host with docker volume
+1) Uncomment this line in Dockerfile:
+- COPY themes/fdk-choose-provider /opt/jboss/keycloak/themes/fdk-choose-provider
 
-1) Copy the fdk theme folder from container:
-Get the sso container id (docker ps), then go to the themes folder and run:
-docker cp <CONTAINERID>:/opt/jboss/keycloak/themes/fdk ./fdk
+2) Build container:
+- docker build -t fdk/sso . —-no-cache
 
-2) Uncomment this line in fdk/docker-compose.override.yml:
-- ../fdk/applications/sso/themes/fdk:/opt/jboss/keycloak/themes/fdk
+3) Copy the fdk theme folder from container:
+First get the sso container id (docker ps), then go to your local themes folder and run:
+docker cp <CONTAINERID>:/opt/jboss/keycloak/themes/fdk-choose-provider ./fdk-choose-provider 
+
+4) Then run container with local volume, use id-porten-mock (secrets from idporten-mock-realm.template.json):
+- docker run -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e SSO_HOST=http://localhost:8084 -e IDPORTEN_OIDC_ROOT=http://localhost:8084/auth/realms/idporten-mock -e IDPORTEN_CLIENT_ID=oidc_brreg_fellesdatakatalog -e IDPORTEN_CLIENT_SECRET=29a2cfe1-1a61-4a04-bf84-64d70a340d04 -d -v <PATH_TO_LOCAL_THEME>:/opt/jboss/keycloak/themes/fdk-choose-provider -p 8084:8084 -t fdk/sso
+
+5) Open browser:
+- http://localhost:8084/auth/realms/fdk/protocol/openid-connect/auth?client_id=fdk-registration-public&redirect_uri=http%3A%2F%2Flocalhost%3A8084%2Fauth%2Frealms%2Ffdk-local%2Faccount%2Flogin-redirect&state=0%2F54726072-b7e3-40fe-b4b9-a55d76bf24dd&response_type=code&scope=openid
 
 Now you can change theme files in ./themes/fdk and see the changes in keycloak. (NB: Shift+Ctrl+R for reloading cached css).
