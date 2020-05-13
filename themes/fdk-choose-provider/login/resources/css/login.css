@@ -1,76 +1,89 @@
-.login-pf body {
-    background: url("../img/illustration-login.svg");
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 50%;
-    background-color: #E5F9FF;
-}
-
-/*title banner size and colour*/
-#kc-header {
-    color: #ededed;
-    overflow: visible;
-    white-space: nowrap;
-    width:100%;
-    background-color: #FFF;
-    padding: 16px 20px;
-    border-bottom: 1px solid #DFE1E2;
-    margin-bottom: 30px;
-}
-
-#kc-header-wrapper {
-    background: url("../img/logo-registrering.svg");
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: auto;
-    padding: 40px 10px 20px;
-    white-space: normal;
-}
-
-.jumbotron {
-    border-radius: 0.3rem;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-    background-color: white !important;
-    padding: 2rem 2rem 0rem 2rem;
-}
-
-
-.choose_idp_container p {
-    font-weight: 400;
-    font-size: 1.5rem;
-}
-
-.choose_idp_container h2 {
-    font-size: 2.4rem;
-    font-weight: 600;
-}
-
-.choose_idp_container .cell {
-    padding: 2rem
-}
-
 .h-100 {
     height: 100% ;
 }
 
-.choose_idp_container {
-    margin-right: auto;
-    margin-left: auto;
+.mb-5 {
+    margin-bottom: 5rem;
 }
 
-.choose_idp_container .row {
+.d-flex {
+    display: flex !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.login-pf body {
+    background: url("../img/illustration-search-dark.svg");
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 30%;
+    background-color: #EEEFF0;
+    height: 100%;
+}
+
+.login-pf-page {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column;
+    font-size: 1.6rem;
+    height: 100%;
+}
+
+/*title banner size and colour*/
+#kc-header {
+    overflow: visible;
+    white-space: nowrap;
+    background-color: #FFF;
+    padding: 16px 20px;
+    border-bottom: 1px solid #DFE1E2;
+    margin-bottom: 3em;
+}
+
+#kc-header-wrapper {
+    background: url("../img/fdk-datanorge-logo.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto;
+    flex-grow: 1;
+    height: 5em;
+    padding: 40px 10px 20px;
+    white-space: normal;
+}
+
+#fdk-nav {
+    flex-grow: 1;
+}
+
+.navbar-nav__item > a {
+    color: #2D3741;
+    font-size: 1.6rem;
+}
+
+.navbar-nav__item > a:hover {
+    background-color: transparent !important;
+    text-decoration: underline !important;
+}
+
+.fdk-card {
+    border-radius: 5px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    background-color: white !important;
+    padding: 3rem;
+}
+
+.fdk-card > p {
+    margin-bottom: 0;
 }
 
 .choose_idp_button {
     text-decoration: none;
     margin-bottom: 1em;
-    color: #FFFFFF;
-    background-color: #0069A5 ;
+    color: #2D3741;
+    background-color: #D5D7D9 ;
     font-size: 1.5rem;
     line-height: 1.5rem;
-    box-shadow: 0 2px 4px rgba(45, 55, 65, 0.2);
+    box-shadow: 0 2px 4px rgba(18, 22, 25, 0.20);
     padding: .8em .9em;
     display: inline-block;
     text-align: center;
@@ -86,31 +99,62 @@
     color: #FFFFFF;
 }
 
+#fdk-footer {
+    color: #FFF;
+    font-size: 1.6rem;
+    margin-top: auto;
+    overflow: visible;
+    white-space: nowrap;
+    width:100%;
+    background-color: #2D3741;
+    padding: 3em;
+}
+
+.fdk-footer-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.fdk-footer-link-list {
+    padding: 1em 0;
+}
+
+.fdk-footer-link-header {
+    font-size: 1.8rem;
+}
+
+ul.fdk-footer-links {
+    list-style-type: none;
+    margin: .5em 0;
+    padding: 0;
+}
+
+.fdk-footer-link-list__item > a {
+    color: #FFF;
+    text-decoration: underline !important;
+}
+
 @media (min-width: 576px) {
-    .choose_idp_container {
+    .container-fluid {
         max-width: 540px;
     }
 }
 
 @media (min-width: 768px) {
-    .choose_idp_container {
+    .container-fluid {
         max-width: 720px;
     }
 }
 
 @media (min-width: 992px) {
-    .choose_idp_container {
+    .container-fluid {
         max-width: 960px;
     }
 }
 
 @media (min-width: 1200px) {
-    .choose_idp_container {
+    .container-fluid {
         max-width: 1140px;
     }
 }
-
-
-
-
-

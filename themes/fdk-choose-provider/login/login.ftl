@@ -1,10 +1,10 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayInfo=social.displayInfo displayWide=(realm.password && social.providers??); section>
     <#if section = "form">
-        <div class="choose_idp_container">
+        <div class="container-fluid">
             <div id="kc-form" class="row">
-                <div class="col-xs-12 col-sm-6 cell">
-                    <div class="jumbotron h-100">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="fdk-card h-100 mb-5">
                         <#assign p = social.providers[1]>
                         <a href="${p.loginUrl}"
                            class="choose_idp_button">
@@ -12,8 +12,8 @@
                         <p>For deg som har fått tilgang til tjenesten "Registrere i datakatalog" i Altinn.</p>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 cell">
-                    <div class="jumbotron h-100">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="fdk-card h-100  mb-5">
                         <#assign p = social.providers[2]>
                         <a href="${p.loginUrl}"
                            class="choose_idp_button">
@@ -23,12 +23,14 @@
                 </div>
             </div>
 
-            <div style="margin:3rem">
-                <p>
-                    <strong>Trenger du eller andre tilgang?</strong><br>
-                    Du kan få tilgang eller gi andre tilgang til å registrere datasettbeskrivelser, API-beskrivelser og begreper
-                    for din virksomhet. <a href="https://fellesdatakatalog.digdir.no/about-registration">Lær hvordan man får og gir tilgang.</a>
-                </p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>
+                        <strong>Trenger du eller andre tilgang?</strong><br>
+                        Du kan få tilgang eller gi andre tilgang til å registrere datasettbeskrivelser, API-beskrivelser og begreper
+                        for din virksomhet. <a href="https://fellesdatakatalog.digdir.no/about-registration">Lær hvordan man får og gir tilgang.</a>
+                    </p>
+                </div>
             </div>
         </div>
     </#if>
