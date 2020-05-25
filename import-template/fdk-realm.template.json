@@ -2092,6 +2092,21 @@
       },
       "protocolMappers": [
         {
+          "id": "2530d7ad-a53b-45f7-a0ef-1c688cd6e868",
+          "name": "add fdk terms version",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-script-based-protocol-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "fdk_terms",
+            "jsonType.label": "String",
+            "script": "var SimpleHttp = Java.type(\"org.keycloak.broker.provider.util.SimpleHttp\");\n\nvar url = \"http://terms-and-conditions:8080/terms/latest/version\"\n\nexports = SimpleHttp.doGet(url, keycloakSession).asString();"
+          }
+        },
+        {
           "id": "7d82daae-4278-4dab-b5ef-ce558bb485b3",
           "name": "map authorities",
           "protocol": "openid-connect",
@@ -2103,7 +2118,22 @@
             "access.token.claim": "true",
             "claim.name": "authorities",
             "jsonType.label": "String",
-            "script": "var StringBuilder = Java.type(\"java.lang.StringBuilder\");\nvar HttpClientProvider = Java.type(\"org.keycloak.connections.httpclient.HttpClientProvider\");\nvar Scanner = Java.type(\"java.util.Scanner\");\n\nvar forEach = Array.prototype.forEach;\n\nvar urlBuilder = new StringBuilder();\n\nurlBuilder.append(\"http://user-api:8080/authorities/\");\n\nvar isDifiLogin = false;\nforEach.call(user.getAttribute(\"login_type\"), function(type){\n    if (type === \"difi\") {\n        isDifiLogin = true;\n    }\n});\n\nif (isDifiLogin) {\n    var orgs = user.getAttribute(\"orgnr\");\n    var roles = user.getAttribute(\"difi_roles\");\n\n    var firstInList = true;\n    urlBuilder.append(\"difi?roles=\");\n\n    forEach.call(roles, function(role) {\n        if (firstInList !== true) {\n            urlBuilder.append(\",\");\n        } else {\n            firstInList = false;\n        }\n    \n        urlBuilder.append(role.replace(\"brukar \", \"\"));\n    });\n\n    firstInList = true;\n    urlBuilder.append(\"&orgs=\");\n\n    forEach.call(orgs, function(org) {\n        if (firstInList !== true) {\n            urlBuilder.append(\",\");\n        } else {\n            firstInList = false;\n        }\n\n        urlBuilder.append(org);\n    });\n\n} else {\n    urlBuilder.append(\"altinn/\");\n    urlBuilder.append(user.username);\n}\n\nvar httpClient = keycloakSession.getProvider(HttpClientProvider.class);\n\nvar inputStream = httpClient.get(urlBuilder.toString());\nvar scanner = new Scanner(inputStream, \"UTF-8\");\n\nexports = scanner.useDelimiter(\"\\\\A\").next();"
+            "script": "var StringBuilder = Java.type(\"java.lang.StringBuilder\");\nvar SimpleHttp = Java.type(\"org.keycloak.broker.provider.util.SimpleHttp\");\n\nvar forEach = Array.prototype.forEach;\n\nvar urlBuilder = new StringBuilder();\n\nurlBuilder.append(\"http://user-api:8080/authorities/\");\n\nvar isDifiLogin = false;\nforEach.call(user.getAttribute(\"login_type\"), function(type){\n    if (type === \"difi\") {\n        isDifiLogin = true;\n    }\n});\n\nif (isDifiLogin) {\n    var orgs = user.getAttribute(\"orgnr\");\n    var roles = user.getAttribute(\"difi_roles\");\n\n    var firstInList = true;\n    urlBuilder.append(\"difi?roles=\");\n\n    forEach.call(roles, function(role) {\n        if (firstInList !== true) {\n            urlBuilder.append(\",\");\n        } else {\n            firstInList = false;\n        }\n    \n        urlBuilder.append(role.replace(\"brukar \", \"\"));\n    });\n\n    firstInList = true;\n    urlBuilder.append(\"&orgs=\");\n\n    forEach.call(orgs, function(org) {\n        if (firstInList !== true) {\n            urlBuilder.append(\",\");\n        } else {\n            firstInList = false;\n        }\n\n        urlBuilder.append(org);\n    });\n\n} else {\n    urlBuilder.append(\"altinn/\");\n    urlBuilder.append(user.username);\n}\n\nvar url = urlBuilder.toString()\n\nexports = SimpleHttp.doGet(url, keycloakSession).header(\"X-API-KEY\", \"${SSO_API_KEY}\").asString();"
+          }
+        },
+        {
+          "id": "899869e5-70ef-4661-86a5-32f45adee583",
+          "name": "add org accepted terms versions",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-script-based-protocol-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "org_terms",
+            "jsonType.label": "String",
+            "script": "var StringBuilder = Java.type(\"java.lang.StringBuilder\");\nvar SimpleHttp = Java.type(\"org.keycloak.broker.provider.util.SimpleHttp\");\n\nvar forEach = Array.prototype.forEach;\n\nvar urlBuilder = new StringBuilder();\n\nurlBuilder.append(\"http://user-api:8080/terms/\");\n\nvar isDifiLogin = false;\nforEach.call(user.getAttribute(\"login_type\"), function(type){\n    if (type === \"difi\") {\n        isDifiLogin = true;\n    }\n});\n\nif (isDifiLogin) {\n    var orgs = user.getAttribute(\"orgnr\");\n    var firstInList = true;\n    urlBuilder.append(\"difi?orgs=\");\n\n    forEach.call(orgs, function(org) {\n        if (firstInList !== true) {\n            urlBuilder.append(\",\");\n        } else {\n            firstInList = false;\n        }\n\n        urlBuilder.append(org);\n    });\n\n} else {\n    urlBuilder.append(\"altinn/\");\n    urlBuilder.append(user.username);\n}\n\nvar url = urlBuilder.toString()\n\nexports = SimpleHttp.doGet(url, keycloakSession).header(\"X-API-KEY\", \"${SSO_API_KEY}\").asString();"
           }
         }
       ]

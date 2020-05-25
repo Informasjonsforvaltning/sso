@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+
+  sso:
+    build: .
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - SSO_HOST=http://localhost:8084
+      - IDPORTEN_OIDC_ROOT=http://localhost:8084/auth/realms/idporten-mock
+      - IDPORTEN_CLIENT_ID=oidc_brreg_fellesdatakatalog
+      - IDPORTEN_CLIENT_SECRET=29a2cfe1-1a61-4a04-bf84-64d70a340d04
+      - SSO_API_KEY=ssosecret
+      - REGISTRATION_HOST=http://localhost:4301
+      - DEV_REGISTRATION_HOST=http://localhost:4301
+    ports:
+      - 8084:8084
+
+  user-api:
+    image: eu.gcr.io/digdir-fdk-infra/user-api:latest
+    environment:
+      - SSO_API_KEY=ssosecret
+      - USER_API_KEY=userapisecret
+    ports:
+      - 8125:8080
+
+  terms-and-conditions:
+    image: eu.gcr.io/digdir-fdk-infra/terms-and-conditions:latest
+    environment:
+      - MONGO_USERNAME=admin
+      - MONGO_PASSWORD=admin
+      - USER_API_KEY=userapisecret
+    ports:
+      - 8182:8080
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports:
+      - 27017:27017
+
+  fdk-nginx-altinn-proxy:
+    image: eu.gcr.io/digdir-fdk-infra/fdk-nginx-altinn-proxy-mock:latest
+    ports:
+      - 8128:8080
