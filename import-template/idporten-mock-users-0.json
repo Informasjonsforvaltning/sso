@@ -965,6 +965,36 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "ef57b1b2-8d5d-4b40-90fc-f3d231f35b36",
+    "createdTimestamp" : 1591190747331,
+    "username" : "oaa",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "attributes" : {
+      "pid" : [ "01018800030" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "WYKUrgr/ogVEQmO8COEPSvCCccxhFLPh1WT6poJIFZVJCuS/ZHXyffJ/Ii+0vWcWzOKZpjNn/47Pn+aiWFAxoA==",
+      "salt" : "tAZHHoCnaEH4CqlHItNevg==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1591190919750,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "f0faae1c-7ffa-4d38-9514-de669c506b4f",
     "createdTimestamp" : 1571668383111,
     "username" : "pa",
