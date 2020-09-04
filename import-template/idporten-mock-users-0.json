@@ -151,6 +151,38 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "d2397855-dbd5-4df8-b27d-a867dfcfe22b",
+    "createdTimestamp" : 1599225401876,
+    "username" : "caf",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Christiane Andrea",
+    "lastName" : "Fröhlich",
+    "attributes" : {
+      "pid" : [ "01018800059" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "Ao5LvL0iiggyCzWDFLhjka78abtir5aylHYJAat+n6H7Fef3D9yXxc/CtAUVU0zJX4OC1iBDW/E0rQVA9+alzw==",
+      "salt" : "umrP0gJ34LFgp2DT7okgKg==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1599225525041,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "1c0c83a5-5758-43bc-968d-214fc5a3948d",
     "createdTimestamp" : 1571668502518,
     "username" : "dv",
@@ -954,6 +986,38 @@
       "digits" : 0,
       "period" : 0,
       "createdDate" : 1585039790267,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "d75bdfcb-243c-4291-852b-7172274fe0db",
+    "createdTimestamp" : 1598951382931,
+    "username" : "nyna",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Nysgjerrig",
+    "lastName" : "Naver",
+    "attributes" : {
+      "pid" : [ "01012345678" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "kr/OyDN6MHB7N7Pf13LaOIGy2+Er+bdZ55Ckpa0Ji+jyBdbjJWJo1nbXUKKZXoHAkYZ4CyUJLRqwKoMEf7jpOA==",
+      "salt" : "ZqiNNah1MYqM2Oihy20W9w==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1598951422237,
       "config" : { }
     } ],
     "disableableCredentialTypes" : [ "password" ],
