@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-xs-12 d-flex align-items-center">
                     <div id="kc-header-wrapper"></div>
-                    <nav id="fdk-nav" class="visible-md visible-lg">
+                    <nav id="fdk-nav">
                         <ul class="nav navbar-nav">
                             <li class="navbar-nav__item">
                                 <a href="https://fellesdatakatalog.digdir.no/guidance">Veiledning</a>
