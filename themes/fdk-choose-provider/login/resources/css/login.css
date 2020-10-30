@@ -52,7 +52,7 @@
 }
 
 #fdk-nav {
-    flex-grow: 1;
+    display: none;
 }
 
 .navbar-nav__item > a {
@@ -144,6 +144,11 @@ ul.fdk-footer-links {
 @media (min-width: 768px) {
     .container-fluid {
         max-width: 720px;
+    }
+    #fdk-nav {
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
     }
 }
 
