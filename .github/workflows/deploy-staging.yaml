@@ -32,7 +32,7 @@ jobs:
         docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
 
       #      - name: Publish docker image to Google Cloud
-#        run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
+      #        run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
 
       - name: Apply Helm template
         run: |
