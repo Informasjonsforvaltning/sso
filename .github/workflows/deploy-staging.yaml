@@ -28,7 +28,8 @@ jobs:
       - run: gcloud auth configure-docker
 
       - name: Build Docker image with GitHub commit sha tag
-        run: docker build --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
+        run: docker build create --driver docker-container --driver-opt image=eu.gcr.io/digdir-fdk-infra/sso:staging_latest . --append . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
+#        run: docker build --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
 
 #      - name: Publish docker image to Google Cloud
 #        run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
