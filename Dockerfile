@@ -1,5 +1,5 @@
-FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_BUILD_ENVIRONMENT
 FROM eu.gcr.io/digdir-fdk-infra/sso:latest
+FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_BUILD_ENVIRONMENT
 
 # use maven environment to build java modules
 
