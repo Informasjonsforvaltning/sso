@@ -28,11 +28,13 @@ jobs:
       - run: gcloud auth configure-docker
 
       - name: Build Docker image with GitHub commit sha tag
-        run: docker build create --name test --driver docker-container --driver-opt image=eu.gcr.io/digdir-fdk-infra/sso:staging_latest --append . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
-#        run: docker build --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
+        run: |
+          docker pull eu.gcr.io/digdir-fdk-infra/sso:staging_latest || true
+          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+#        run: docker build -. -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
 
-#      - name: Publish docker image to Google Cloud
-#        run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
+      - name: Publish docker image to Google Cloud
+        run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
 
       - name: Apply Helm template
         run: |
