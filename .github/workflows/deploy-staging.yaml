@@ -31,7 +31,7 @@ jobs:
         uses: whoan/docker-build-with-cache-action@v5
         with:
           username: _json_key
-          password: "${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}"
+          password: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
           registry: eu.gcr.io
           image_name: sso
           image_tag: $GITHUB_SHA,staging_latest
