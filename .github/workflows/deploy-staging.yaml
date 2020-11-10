@@ -28,8 +28,7 @@ jobs:
       - run: gcloud auth configure-docker
 
       - name: Build Docker image with GitHub commit sha tag
-        run: |
-          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=type=registry,ref=eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+        run: docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=type=registry,ref=eu.gcr.io/digdir-fdk-infra/sso:staging_latest
 #          echo {{ secrets.$GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 #          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-no-buildkit || true
 #          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-no-buildkit
