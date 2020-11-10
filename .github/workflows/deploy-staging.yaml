@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: docker/setup-buildx-action@v1
+        id: buildx
+        with:
+          install: true
+
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
@@ -24,8 +29,13 @@ jobs:
 
       - name: Build Docker image with GitHub commit sha tag
         run: |
-          docker build . --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest --build-arg BUILDKIT_INLINE_CACHE=1 -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest
-#        run: docker build -. -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
+          echo $GITHUB_TOKEN | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-no-buildkit || true
+          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-no-buildkit
+          docker tag eu.gcr.io/digdir-fdk-infra/sso docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-no-buildkit && docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-no-buildkit || true
+#         docker pull eu.gcr.io/digdir-fdk-infra/sso:staging_latest || true
+#         docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+#         run: docker build -. -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --push
 
       - name: Publish docker image to Google Cloud
         run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
@@ -53,13 +63,13 @@ jobs:
         with:
           args: "apply -f ./kubectlapply.yaml --force"
 
-#      - name: Notify slack
-#        uses: 8398a7/action-slack@v3
-#        with:
-#          status: ${{ job.status }}
-#          author_name: 'Application: sso | Environment: staging'
-#          fields: commit,author,workflow
-#        env:
-#          GITHUB_TOKEN: ${{ github.token }}
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#        if: always()
+      - name: Notify slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: 'Application: sso | Environment: staging'
+          fields: commit,author,workflow
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
