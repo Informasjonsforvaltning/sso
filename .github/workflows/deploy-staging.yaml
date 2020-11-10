@@ -30,9 +30,9 @@ jobs:
       - name: Build Docker image with GitHub commit sha tag
         uses: whoan/docker-build-with-cache-action@v5
         with:
-          username: _json_key
+          username: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_EMAIL }}
           password: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
-          registry: eu.gcr.io
+          registry: eu.gcr.io/digdir-fdk-infra
           image_name: sso
           image_tag: $GITHUB_SHA,staging_latest
 #        run: docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=type=registry,ref=eu.gcr.io/digdir-fdk-infra/sso:staging_latest --progress tty --push
