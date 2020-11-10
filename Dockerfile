@@ -2,6 +2,7 @@ FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_BUILD_ENVIRONMENT
 
 # use maven environment to build java modules
 
+ARG BUILDKIT_INLINE_CACHE
 RUN mkdir /tmp/rest-user-mapper
 RUN mkdir /tmp/whitelisted-email-validator
 
@@ -21,6 +22,7 @@ RUN mvn clean package --no-transfer-progress
 
 FROM jboss/keycloak:6.0.1
 
+ARG BUILDKIT_INLINE_CACHE
 ENV DB_VENDOR h2
 
 # copy deployment modules from maven environment
