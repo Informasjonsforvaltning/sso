@@ -13,19 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-#      - name: Set up Docker Buildx
-#        id: buildx
-#        uses: docker/setup-buildx-action@v1
-#        with:
-#          version: latest
-#
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
           path: /var/lib/docker
-          key: ${{ runner.os }}-build-${{ hashFiles('Dockerfile') }}
+          key: ${{ runner.os }}-buildx-${{ hashFiles('Dockerfile') }}
           restore-keys: |
-            ${{ runner.os }}-build
+            ${{ runner.os }}-buildx
 
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
@@ -40,7 +40,7 @@ jobs:
       - name: Build Docker image with GitHub commit sha tag
         run: |
           docker pull eu.gcr.io/digdir-fdk-infra/sso:staging_latest
-          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from eu.gcr.io/digdir-fdk-infra/sso:staging_latest --build-arg BUILDKIT_INLINE_CACHE=1
+          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from eu.gcr.io/digdir-fdk-infra/sso:staging_latest
 
       - name: Publish docker image to Google Cloud
         run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
