@@ -41,7 +41,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: $GITHUB_SHA,staging_latest
+          tags: |
+            eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA
+            eu.gcr.io/digdir-fdk-infra/sso:staging_latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
