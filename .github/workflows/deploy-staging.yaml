@@ -19,13 +19,13 @@ jobs:
 #        with:
 #          version: latest
 #
-#      - name: Cache Docker layers
-#        uses: actions/cache@v2
-#        with:
-#          path: /tmp/.buildx-cache
-#          key: ${{ runner.os }}-buildx-${{ hashFiles('Dockerfile') }}
-#          restore-keys: |
-#            ${{ runner.os }}-buildx
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /var/lib/docker
+          key: ${{ runner.os }}-build-${{ hashFiles('Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-build
 
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
