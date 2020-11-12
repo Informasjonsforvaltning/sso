@@ -38,8 +38,8 @@ jobs:
 
       - name: Build Docker image with GitHub commit sha tag
         run: |
-        docker pull eu.gcr.io/digdir-fdk-infra/sso:staging_latest
-        docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest -c eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+          docker pull eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from eu.gcr.io/digdir-fdk-infra/sso:staging_latest
 
       - name: Publish docker image to Google Cloud
         run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
