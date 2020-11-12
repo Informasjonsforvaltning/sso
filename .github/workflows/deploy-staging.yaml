@@ -42,8 +42,8 @@ jobs:
         with:
           push: true
           tags: |
-            eu.gcr.io/digdir-fdk-infra/sso:${{ secrets.GITHUB_SHA }}
-            eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+            digdir-fdk-infra/sso:$GITHUB_SHA
+            digdir-fdk-infra/sso:staging_latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
