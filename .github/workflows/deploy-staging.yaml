@@ -30,6 +30,7 @@ jobs:
       # Setup gcloud CLI
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
+          project_id: digdir-fdk-infra
           service_account_email: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
 
@@ -39,7 +40,7 @@ jobs:
       - name: Build Docker image with GitHub commit sha tag
         run: |
           docker pull eu.gcr.io/digdir-fdk-infra/sso:staging_latest
-          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from eu.gcr.io/digdir-fdk-infra/sso:staging_latest
+          docker build . -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from eu.gcr.io/digdir-fdk-infra/sso:staging_latest --build-arg BUILDKIT_INLINE_CACHE=1
 
       - name: Publish docker image to Google Cloud
         run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
