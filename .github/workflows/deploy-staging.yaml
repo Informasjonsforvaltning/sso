@@ -46,7 +46,7 @@ jobs:
 #          cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Build Docker image with GitHub commit sha tag
-        run: docker build -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=type=local,src=/.m2/repository --cache-to=type=local,dest=/.m2/repository --push .
+        run: docker build -t eu.gcr.io/digdir-fdk-infra/sso:$GITHUB_SHA -t eu.gcr.io/digdir-fdk-infra/sso:staging_latest --cache-from=type=local,src=/.m2/repository --push .
 
 #      - name: Publish docker image to Google Cloud
 #        run: docker -- push eu.gcr.io/digdir-fdk-infra/sso
