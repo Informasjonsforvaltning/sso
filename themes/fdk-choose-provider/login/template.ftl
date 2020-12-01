@@ -32,13 +32,13 @@
                     <nav id="fdk-nav">
                         <ul class="nav navbar-nav">
                             <li class="navbar-nav__item">
-                                <a href="https://data.norge.no/guidance">Veiledning</a>
+                                <a href="https://registrering.fellesdatakatalog.digdir.no">Registrere data</a>
                             </li>
                             <li class="navbar-nav__item">
-                                <a href="https://data.norge.no/about-registration">Registrer data</a>
+                                <a href="https://admin.fellesdatakatalog.digdir.no">Høste data</a>
                             </li>
                             <li class="navbar-nav__item">
-                                <a href="https://data.norge.no/publishing">Publiser</a>
+                                <a class="external_icon" href="https://data.norge.no">Søk i Felles datakatalog</a>
                             </li>
                         </ul>
                     </nav>
