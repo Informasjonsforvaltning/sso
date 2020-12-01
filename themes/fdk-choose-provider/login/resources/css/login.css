@@ -115,7 +115,7 @@
 
 #fdk-footer {
     color: #FFF;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin-top: auto;
     overflow: visible;
     white-space: nowrap;
@@ -135,7 +135,8 @@
 }
 
 .fdk-footer-link-header {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 ul.fdk-footer-links {
@@ -146,7 +147,8 @@ ul.fdk-footer-links {
 
 .fdk-footer-link-list__item > a {
     color: #FFF;
-    text-decoration: underline !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid #FFF;
 }
 
 @media (min-width: 576px) {
