@@ -2098,7 +2098,7 @@
           "protocolMapper": "oidc-script-based-protocol-mapper",
           "consentRequired": false,
           "config": {
-            "userinfo.token.claim": "false",
+            "userinfo.token.claim": "true",
             "id.token.claim": "false",
             "access.token.claim": "true",
             "claim.name": "fdk_terms",
@@ -2113,7 +2113,7 @@
           "protocolMapper": "oidc-script-based-protocol-mapper",
           "consentRequired": false,
           "config": {
-            "userinfo.token.claim": "false",
+            "userinfo.token.claim": "true",
             "id.token.claim": "false",
             "access.token.claim": "true",
             "claim.name": "authorities",
@@ -2128,7 +2128,7 @@
           "protocolMapper": "oidc-script-based-protocol-mapper",
           "consentRequired": false,
           "config": {
-            "userinfo.token.claim": "false",
+            "userinfo.token.claim": "true",
             "id.token.claim": "false",
             "access.token.claim": "true",
             "claim.name": "org_terms",
