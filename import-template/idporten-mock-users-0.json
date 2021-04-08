@@ -254,8 +254,8 @@
     },
     "credentials" : [ {
       "type" : "password",
-      "hashedSaltedValue" : "+UWNB8zL5nTK3CjkkEFUfUQkdZYELY3AlxBRzHdPlvFSDUCg1DAqSgeNV7cXpUIO+Ic7myteyNBFUotmQ2zoVQ==",
-      "salt" : "FbcvlIi0mlm6rbqkSxi3Mw==",
+      "hashedSaltedValue" : "5lP1jGpI1f9CUu86tv3GdkJ0Osn/o7E1Qa/K4j5cCCbOa0XZpus/r1FdLbTfyOEQMv1B8y08YQ68dV8/3bO6kA==",
+      "salt" : "GKW08wW4kIjklqmw5fqDQQ==",
       "hashIterations" : 27500,
       "counter" : 0,
       "algorithm" : "pbkdf2-sha256",
