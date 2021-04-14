@@ -682,7 +682,7 @@
     {
       "id": "c2288671-8292-4774-9a2b-53b37483343e",
       "clientId": "fdk-community-service",
-      "rootUrl": "http://localhost:4567",
+      "rootUrl": "${FDK_COMMUNITY_SERVICE_HOST}",
       "adminUrl": "",
       "baseUrl": "/",
       "surrogateAuthRequired": false,
@@ -690,11 +690,12 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:4567/*",
+        "${DEV_FDK_COMMUNITY_SERVICE_HOST}/*",
         "/*"
       ],
       "webOrigins": [
-        "http://localhost:4567"
+        "${DEV_FDK_COMMUNITY_SERVICE_HOST}",
+        "${FDK_COMMUNITY_SERVICE_HOST}"
       ],
       "notBefore": 0,
       "bearerOnly": false,
