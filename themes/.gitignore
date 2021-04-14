@@ -54,3 +54,12 @@ fdk-choose-provider/login/resources/img/*
 !fdk-choose-provider/login/resources/img/logo-registrering.svg
 !fdk-choose-provider/login/resources/img/illustration-search-dark.svg
 !fdk-choose-provider/login/resources/img/fdk-datanorge-logo.svg
+
+!fdk-fbh
+fdk-fbh/*
+
+!fdk-fbh/login
+fdk-fbh/login/*
+
+!fdk-fbh/login/login.ftl
+!fdk-fbh/login/template.ftl
