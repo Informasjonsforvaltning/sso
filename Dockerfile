@@ -31,10 +31,12 @@ COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/whitelisted-email-validator/target/whit
 # copy keycloak theme as fdk theme.
 RUN cp -r /opt/jboss/keycloak/themes/keycloak /opt/jboss/keycloak/themes/fdk
 RUN cp -r /opt/jboss/keycloak/themes/keycloak /opt/jboss/keycloak/themes/fdk-choose-provider
+RUN cp -r /opt/jboss/keycloak/themes/keycloak /opt/jboss/keycloak/themes/fdk-fbh
 
 # copy modified files from host ( 3 files) - trying to copy only changed files...
 COPY themes/fdk /opt/jboss/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/jboss/keycloak/themes/fdk-choose-provider
+COPY themes/fdk-fbh /opt/jboss/keycloak/themes/fdk-fbh
 
 COPY tools /opt/fdk/tools
 
