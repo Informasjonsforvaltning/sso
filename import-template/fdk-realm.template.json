@@ -688,7 +688,6 @@
       "surrogateAuthRequired": false,
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
       "redirectUris": [
         "${DEV_FDK_COMMUNITY_SERVICE_HOST}/*",
         "/*"
