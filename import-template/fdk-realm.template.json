@@ -817,6 +817,19 @@
           "config": {
             "access.token.claim": "true",
             "id.token.claim": "false",
+            "included.client.audience": "dataservice-catalog",
+            "userinfo.token.claim": "false"
+          },
+          "consentRequired": false,
+          "id": "e23269ba-e394-544c-a81a-9b159351ee9a",
+          "name": "include dataservice-catalog audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper"
+        },
+        {
+          "config": {
+            "access.token.claim": "true",
+            "id.token.claim": "false",
             "included.client.audience": "fdk-registration-api",
             "userinfo.token.claim": "false"
           },
