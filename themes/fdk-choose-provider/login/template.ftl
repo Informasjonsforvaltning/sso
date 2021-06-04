@@ -38,6 +38,9 @@
                                 <a href="https://admin.fellesdatakatalog.digdir.no">Høste data</a>
                             </li>
                             <li class="navbar-nav__item">
+                                <a class="external_icon" href="https://datalandsbyen.norge.no/">Datalandsbyen</a>
+                            </li>
+                            <li class="navbar-nav__item">
                                 <a class="external_icon" href="https://data.norge.no">Søk i Felles datakatalog</a>
                             </li>
                         </ul>
