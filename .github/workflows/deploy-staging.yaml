@@ -68,7 +68,7 @@ jobs:
           helm fetch --untar --untardir ./helm fdk/sso
           helm template  \
             --set DOCKER_IMAGE_NAME="eu.gcr.io/digdir-fdk-infra/sso:${{ steps.meta.outputs.version }}" \
-            -f ./helm/fdk-cms-service/values/staging.yaml \
+            -f ./helm/sso/values/staging.yaml \
             ./helm/sso/ > ./kubectlapply.yaml
           chmod o+w ./kubectlapply.yaml
           cat kubectlapply.yaml
