@@ -44,7 +44,7 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=raw,value=staging_latest
+            type=raw,value=staging_latest,priority=900
             type=sha,prefix={{branch}}-,priority=1000
             type=ref,event=branch
 
@@ -84,13 +84,13 @@ jobs:
           gcloud container clusters get-credentials digdir-fdk-prod --region europe-north1-a --project digdir-fdk-prod
           kubectl apply -f ./kubectlapply.yaml --force
 
-      - name: Notify slack
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          author_name: 'Application: sso | Environment: staging'
-          fields: commit,author,workflow
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+#      - name: Notify slack
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          author_name: 'Application: sso | Environment: staging'
+#          fields: commit,author,workflow
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: always()
