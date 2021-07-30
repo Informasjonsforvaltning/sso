@@ -45,7 +45,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=staging_latest
-            type=sha,priority=1000
+            type=raw,value=${{ github.sha }},priority=1000
             type=ref,event=branch
 
       - name: Build and push
@@ -81,7 +81,7 @@ jobs:
 
       - name: Deploy to GCP
         run: |
-          gcloud container clusters get-credentials digdir-fdk-prod --region europe-north1-a --project digdir-fdk-prod
+          gcloud container clusters get-credentials digdir-fdk-dev --region europe-north1-a --project digdir-fdk-dev
           kubectl apply -f ./kubectlapply.yaml --force
 
 #      - name: Notify slack
