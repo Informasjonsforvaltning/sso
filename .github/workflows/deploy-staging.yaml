@@ -45,7 +45,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=staging_latest
-            type=raw,value="{{ branch }}"-{{sha}}
+            type=sha,priority=1000
             type=ref,event=branch
 
       - name: Build and push
