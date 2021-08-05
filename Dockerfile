@@ -23,9 +23,6 @@ FROM jboss/keycloak:6.0.1
 
 ENV DB_VENDOR h2
 
-RUN /subsystem=logging/json-formatter=JSON:add(exception-output-type=formatted)
-RUN /subsystem=logging/console-handler=CONSOLE:write-attribute(name=named-formatter,value=JSON)
-
 # copy deployment modules from maven environment
 # deployments are compiled SPI implementation modules. E.g. Federated rest user storage module.
 COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/jboss/keycloak/standalone/deployments/rest-user-mapper.jar

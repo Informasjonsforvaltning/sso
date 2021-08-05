@@ -1,0 +1,6 @@
+embed-server --server-config=standalone-ha.xml --std-out=echo
+
+/subsystem=logging/json-formatter=JSON:add(exception-output-type=formatted)
+/subsystem=logging/console-handler=CONSOLE:write-attribute(name=named-formatter,value=JSON)
+
+stop-embedded-server
