@@ -1,8 +1,4 @@
 <configuration>
-    <property resource="application.yaml" />
-
-    <!-- use Spring default values -->
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <appender name="compact" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
