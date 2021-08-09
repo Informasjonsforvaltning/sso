@@ -1,6 +1,6 @@
 embed-server --server-config=standalone-ha.xml --std-out=echo
 
-/subsystem=logging/json-formatter=JSON:add(exception-output-type=detailed, key-overrides=[level=severity])
+/subsystem=logging/json-formatter=JSON:add(exception-output-type=detailed, key-overrides=[level=severity], metadata={service="sso",shortMessage=message})
 /subsystem=logging/console-handler=CONSOLE:write-attribute(name=named-formatter,value=JSON)
 /subsystem=logging/logger=org.keycloak.events:write-attribute(name=named-formatter,value=JSON)
 
