@@ -783,6 +783,36 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "386d9921-20b7-40dc-9938-3cff3e7c8f8d",
+    "createdTimestamp" : 1629105596858,
+    "username" : "hut",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "attributes" : {
+      "pid" : [ "01018800086" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "nKcX2eA57vH38aCzahkelnusw+WhyZNduhYxQ6nhq7QFNz7BVJiA2IhZIL/uFnbFONRmc5N55/8UrnJ4Uv2Y/A==",
+      "salt" : "QD4jAZeyxU2jocaBTlBngw==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1629105621905,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "3271002e-7623-4c4d-a4e5-36f11c8e9ff3",
     "createdTimestamp" : 1571662798877,
     "username" : "ig",
