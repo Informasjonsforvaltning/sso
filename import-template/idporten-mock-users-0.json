@@ -151,6 +151,36 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "19c66243-eb6b-4a46-9748-49ad02d2382a",
+    "createdTimestamp" : 1629895892620,
+    "username" : "ati",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "attributes" : {
+      "pid" : [ "01018800087" ]
+    },
+    "credentials" : [ {
+      "type" : "password",
+      "hashedSaltedValue" : "lvKQPmMhxjMDNqyHfcSlOXPvoKpa1IqadeSjdni/3hLDarepZN6IROUFgPvvTyJ+ih0y2+4lObTQ9UGCwmbIkA==",
+      "salt" : "tE8Mr0Hoyk8Yku5uTMCOBA==",
+      "hashIterations" : 27500,
+      "counter" : 0,
+      "algorithm" : "pbkdf2-sha256",
+      "digits" : 0,
+      "period" : 0,
+      "createdDate" : 1629895937936,
+      "config" : { }
+    } ],
+    "disableableCredentialTypes" : [ "password" ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "offline_access", "uma_authorization" ],
+    "clientRoles" : {
+      "account" : [ "manage-account", "view-profile" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "ac184ff5-1a69-4b88-958a-f683852d8f85",
     "createdTimestamp" : 1585037551420,
     "username" : "bib",
