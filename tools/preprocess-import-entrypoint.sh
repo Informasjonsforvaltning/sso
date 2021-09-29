@@ -100,6 +100,10 @@ sed -e 's,${IDPORTEN_CLIENT_ID},'$IDPORTEN_CLIENT_ID',g' \
  -e 's,${DIFI_OIDC_ISSUER},'$DIFI_OIDC_ISSUER',g' \
  -e 's,${DIFI_USER_INFO_URL},'$DIFI_USER_INFO_URL',g' \
  -e 's,${SSO_API_KEY},'$SSO_API_KEY',g' \
+ -e 's,${OK_CLIENT_ID},'$OK_CLIENT_ID',g' \
+ -e 's,${OK_CLIENT_SECRET},'$OK_CLIENT_SECRET',g' \
+ -e 's,${OK_OIDC_TOKEN_URL},'$OK_OIDC_TOKEN_URL',g' \
+ -e 's,${OK_OIDC_AUTHORIZATION_URL},'$OK_OIDC_AUTHORIZATION_URL',g' \
    </tmp/keycloak/import-template/fdk-realm.template.json >/tmp/keycloak/import/overwrite/fdk-realm.json
 
 sed -e 's,${FDK_LOCAL_SECRET},'$FDK_LOCAL_SECRET',g' \
