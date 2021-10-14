@@ -19,7 +19,7 @@ RUN mvn clean package --no-transfer-progress
 
 ###################################
 
-FROM jboss/keycloak:6.0.1
+FROM jboss/keycloak:15.0.1
 
 ENV DB_VENDOR h2
 

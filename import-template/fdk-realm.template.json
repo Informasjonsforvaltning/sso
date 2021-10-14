@@ -2496,6 +2496,7 @@
     },
     {
       "alias": "${DIFI_CLIENT_ID}",
+      "displayName": "Felles brukerhåndtering",
       "internalId": "5c3fdeee-512a-438c-81c1-586cb6dbb81f",
       "providerId": "keycloak-oidc",
       "enabled": true,
