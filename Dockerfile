@@ -23,6 +23,9 @@ FROM jboss/keycloak:15.0.1
 
 ENV DB_VENDOR h2
 
+USER root
+RUN microdnf update -y && microdnf install -y jq && microdnf clean all
+
 # copy deployment modules from maven environment
 # deployments are compiled SPI implementation modules. E.g. Federated rest user storage module.
 COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/jboss/keycloak/standalone/deployments/rest-user-mapper.jar

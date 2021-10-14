@@ -66,8 +66,6 @@ else
     IDPORTEN_OIDC_LOGOUT_URL=$(echo $OIDC_CONF | jq ".end_session_endpoint" -r)
 fi
 
-FDK_LOCAL_SECRET=$(uuidgen)
-
 sed -e 's,${IDPORTEN_CLIENT_ID},'$IDPORTEN_CLIENT_ID',g' \
  -e 's,${IDPORTEN_CLIENT_SECRET},'$IDPORTEN_CLIENT_SECRET',g' \
  -e 's,${IDPORTEN_OIDC_ISSUER},'$IDPORTEN_OIDC_ISSUER',g' \
@@ -105,16 +103,6 @@ sed -e 's,${IDPORTEN_CLIENT_ID},'$IDPORTEN_CLIENT_ID',g' \
  -e 's,${OK_OIDC_TOKEN_URL},'$OK_OIDC_TOKEN_URL',g' \
  -e 's,${OK_OIDC_AUTHORIZATION_URL},'$OK_OIDC_AUTHORIZATION_URL',g' \
    </tmp/keycloak/import-template/fdk-realm.template.json >/tmp/keycloak/import/overwrite/fdk-realm.json
-
-sed -e 's,${FDK_LOCAL_SECRET},'$FDK_LOCAL_SECRET',g' \
- -e 's,${SSO_HOST},'$SSO_HOST',g' \
- -e 's,${EMAIL_VERIFY},'$EMAIL_VERIFY',g' \
- -e 's,${SMTP_FROM},'$SMTP_FROM',g' \
- -e 's,${SMTP_FROM_NAME},'$SMTP_FROM_NAME',g' \
- -e 's,${SMTP_HOST},'$SMTP_HOST',g' \
- -e 's,${SMTP_USER},'$SMTP_USER',g' \
- -e 's,${SMTP_PASSWORD},'$SMTP_PASSWORD',g' \
-  </tmp/keycloak/import-template/fdk-local-realm.template.json >/tmp/keycloak/import/update/fdk-local-realm.json
 
 exec /opt/jboss/tools/docker-entrypoint.sh $@
 exit $?
