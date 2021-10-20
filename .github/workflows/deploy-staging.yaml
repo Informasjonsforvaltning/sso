@@ -83,7 +83,6 @@ jobs:
         run: |
           gcloud container clusters get-credentials digdir-fdk-dev --region europe-north1-a --project digdir-fdk-dev
           kubectl apply -f ./kubectlapply.yaml --force
-        # Verify the deployment in GCP, if unsuccessful - roll back.
           if ! kubectl --namespace=staging rollout status deployment sso; then
             kubectl --namespace=staging rollout undo deployment sso
             kubectl --namespace=staging rollout status deployment sso
