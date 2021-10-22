@@ -77,7 +77,7 @@ jobs:
           service_account_key: ${{ secrets.DIGDIR_FDK_PROD_AUTODEPLOY }}
           export_default_credentials: true
 
-      - name: Deploy to GCP
+      - name: Deploy to GCP & check status
         run: |
           gcloud container clusters get-credentials digdir-fdk-prod --region europe-north1-a --project digdir-fdk-prod
           kubectl apply -f ./kubectlapply.yaml --force
