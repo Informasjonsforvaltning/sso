@@ -33,6 +33,11 @@ jobs:
         run: |
           gcloud container clusters get-credentials digdir-fdk-dev --region europe-north1-a --project digdir-fdk-dev
           kubectl apply -f ./kubectlapply.yaml --force
+          if ! kubectl --namespace=demo rollout status deployment sso; then
+            kubectl --namespace=demo rollout undo deployment sso
+            kubectl --namespace=demo rollout status deployment sso
+            exit 1
+          fi
 
       - name: Notify slack
         uses: 8398a7/action-slack@v3
