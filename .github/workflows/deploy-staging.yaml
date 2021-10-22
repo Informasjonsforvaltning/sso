@@ -79,10 +79,15 @@ jobs:
           service_account_key: ${{ secrets.DIGDIR_FDK_DEV_AUTODEPLOY }}
           export_default_credentials: true
 
-      - name: Deploy to GCP
+      - name: Deploy to GCP & check status
         run: |
           gcloud container clusters get-credentials digdir-fdk-dev --region europe-north1-a --project digdir-fdk-dev
           kubectl apply -f ./kubectlapply.yaml --force
+          if ! kubectl --namespace=staging rollout status deployment sso; then
+            kubectl --namespace=staging rollout undo deployment sso
+            kubectl --namespace=staging rollout status deployment sso
+            exit 1
+          fi
 
       - name: Notify slack
         uses: 8398a7/action-slack@v3
