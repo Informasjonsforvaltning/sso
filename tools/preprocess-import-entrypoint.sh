@@ -19,6 +19,8 @@ echo "DEV_RECORDS_OF_PROCESSING_ACTIVITIES_GUI_HOST=$DEV_RECORDS_OF_PROCESSING_A
 echo "DEV_DATASERVICE_CATALOG_GUI_HOST=$DEV_DATASERVICE_CATALOG_GUI_HOST"
 echo "DEV_TERMS_AND_CONDITIONS_GUI_HOST=$DEV_TERMS_AND_CONDITIONS_GUI_HOST"
 
+source ${__dir}/wait-for-keycloak.sh
+
 if [[ $IDPORTEN_OIDC_ROOT =~ ^$SSO_HOST ]]; then
     # identiy provider is on the same server (another realm)
     # we cannot query configuration before server has started (egg og chicken)
