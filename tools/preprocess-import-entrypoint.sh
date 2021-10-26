@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH=$PATH:$JBOSS_HOME/bin
+
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Processing import template"
