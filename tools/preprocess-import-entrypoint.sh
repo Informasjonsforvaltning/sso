@@ -19,21 +19,7 @@ echo "DEV_RECORDS_OF_PROCESSING_ACTIVITIES_GUI_HOST=$DEV_RECORDS_OF_PROCESSING_A
 echo "DEV_DATASERVICE_CATALOG_GUI_HOST=$DEV_DATASERVICE_CATALOG_GUI_HOST"
 echo "DEV_TERMS_AND_CONDITIONS_GUI_HOST=$DEV_TERMS_AND_CONDITIONS_GUI_HOST"
 
-waitingForKeycloakEndpoint=true
-
-while $waitingForKeycloakEndpoint; do
-  if [[ $(curl --head --write-out %{http_code} --silent --output /dev/null http://localhost:8084/auth) != 303 ]]
-  then
-    echo "wait 15 seconds before potentially continuing init scripts"
-    sleep 15
-  else
-    waitingForKeycloakEndpoint=false
-
-    /opt/fdk/tools/update-realms.sh
-
-  fi
-
-done
+kcadm.sh config credentials --server http://localhost:8084/auth --realm master --user $KEYCLOAK_USER --password $KEYCLOAK_PASSWORD
 
 if [[ $IDPORTEN_OIDC_ROOT =~ ^$SSO_HOST ]]; then
     # identiy provider is on the same server (another realm)
@@ -57,7 +43,7 @@ else
     # wait until configuration file becomes available and parse it
     OIDC_CONF_ADDRESS=$IDPORTEN_OIDC_ROOT/.well-known/openid-configuration
 
-    source ${__dir}/wait_for_http_200.sh $OIDC_CONF_ADDRESS
+    source "${__dir}"/wait_for_http_200.sh $OIDC_CONF_ADDRESS
 
     OIDC_CONF=$(curl $OIDC_CONF_ADDRESS)
 
