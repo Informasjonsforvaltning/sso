@@ -4,8 +4,8 @@ waitingForKeycloakEndpoint=true
 while $waitingForKeycloakEndpoint; do
   if [[ $(curl --head --write-out %{http_code} --silent --output /dev/null http://localhost:8084/auth) != 303 ]]
   then
-    echo "wait 30 seconds before potentially continuing init scripts"
-    sleep 30
+    echo "wait 15 seconds before potentially continuing init scripts"
+    sleep 15
   else
     waitingForKeycloakEndpoint=false
 
