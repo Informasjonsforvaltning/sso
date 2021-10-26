@@ -5,8 +5,8 @@ services:
   sso:
     build: .
     environment:
-      - ADMIN_USER=admin
-      - ADMIN_PASSWORD=admin
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
       - SSO_HOST=http://localhost:8084
       - IDPORTEN_OIDC_ROOT=http://localhost:8084/auth/realms/idporten-mock
       - IDPORTEN_CLIENT_ID=oidc_brreg_fellesdatakatalog

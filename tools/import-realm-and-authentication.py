@@ -23,8 +23,8 @@ def doHttpRequest(method, url, data, headers):
         return;
 
 def getAccessToken():
-    keycloak_user = os.environ['ADMIN_USER']
-    keycloak_password = os.environ['ADMIN_PASSWORD']
+    keycloak_user = os.environ['KEYCLOAK_USER']
+    keycloak_password = os.environ['KEYCLOAK_PASSWORD']
     url = "/auth/realms/master/protocol/openid-connect/token"
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     params = urllib.urlencode({"username": keycloak_user, "password": keycloak_password, "grant_type": "password", "client_id": "admin-cli"})
