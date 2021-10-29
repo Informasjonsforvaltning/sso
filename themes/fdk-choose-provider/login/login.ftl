@@ -5,7 +5,7 @@
             <div id="kc-form" class="row">
                 <div class="col-xs-12 col-sm-6">
                     <div class="fdk-card h-100 mb-5">
-                        <#assign p = social.providers[1]>
+                        <#assign p = social.providers[2]>
                         <a href="${p.loginUrl}"
                            class="choose_idp_button">
                             <span>Logg inn via ID-porten</span></a>
