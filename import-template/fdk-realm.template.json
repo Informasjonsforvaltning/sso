@@ -548,6 +548,19 @@
           "name": "include concept-catalogue audience",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-audience-mapper"
+        },
+        {
+          "config": {
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "included.client.audience": "catalog-comments-service",
+            "userinfo.token.claim": "false"
+          },
+          "consentRequired": false,
+          "id": "424ca9c3-12a2-4bc8-b546-fd656e106932",
+          "name": "include catalog-comments-service audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper"
         }
       ],
       "publicClient": true,
@@ -850,6 +863,18 @@
           "name": "include records-of-processing-activities audience",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-audience-mapper"
+        },
+        {
+          "config": {
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "included.client.audience": "catalog-comments-service"
+          },
+          "consentRequired": false,
+          "id": "4bc2e404-4fc4-49e8-894a-2fe48fa7e172",
+          "name": "include catalog-comments-service audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper"
         }
       ],
       "publicClient": true,
@@ -948,6 +973,18 @@
           "consentRequired": false,
           "id": "5faa2375-53da-4a13-a6c2-eb610a7b0c06",
           "name": "include records-of-processing-activities audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper"
+        },
+        {
+          "config": {
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "included.client.audience": "catalog-comments-service"
+          },
+          "consentRequired": false,
+          "id": "b376224a-d71d-405d-8ad8-8f1353e1b348",
+          "name": "include catalog-comments-service audience",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-audience-mapper"
         }
@@ -1167,6 +1204,18 @@
           "consentRequired": false,
           "config": {
             "included.client.audience": "dataservice-catalog",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        },
+        {
+          "id": "9cfebc8b-aa3a-4178-ae4c-c74680ab28b1",
+          "name": "include catalog-comments-service audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "catalog-comments-service",
             "id.token.claim": "false",
             "access.token.claim": "true"
           }
@@ -1697,6 +1746,55 @@
       "implicitFlowEnabled": false,
       "name": "${client_realm-management}",
       "nodeReRegistrationTimeout": 0,
+      "notBefore": 0,
+      "optionalClientScopes": [
+        "address",
+        "offline_access",
+        "phone"
+      ],
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "redirectUris": [],
+      "serviceAccountsEnabled": false,
+      "standardFlowEnabled": true,
+      "surrogateAuthRequired": false,
+      "webOrigins": []
+    },
+    {
+      "attributes": {
+        "display.on.consent.screen": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml.assertion.signature": "false",
+        "saml.authnstatement": "false",
+        "saml.client.signature": "false",
+        "saml.encrypt": "false",
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "saml.onetimeuse.condition": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "saml_force_name_id_format": "false",
+        "tls.client.certificate.bound.access.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "bearerOnly": true,
+      "clientAuthenticatorType": "client-secret",
+      "clientId": "catalog-comments-service",
+      "consentRequired": false,
+      "defaultClientScopes": [
+        "email",
+        "profile",
+        "role_list",
+        "roles",
+        "web-origins"
+      ],
+      "directAccessGrantsEnabled": true,
+      "enabled": true,
+      "frontchannelLogout": false,
+      "fullScopeAllowed": true,
+      "id": "b7f72a5c-f5c8-4b56-af60-6f2418b2a80c",
+      "implicitFlowEnabled": false,
+      "nodeReRegistrationTimeout": -1,
       "notBefore": 0,
       "optionalClientScopes": [
         "address",
