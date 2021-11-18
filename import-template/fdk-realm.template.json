@@ -2093,21 +2093,6 @@
         {
           "config": {
             "access.token.claim": "true",
-            "claim.name": "preferred_username",
-            "id.token.claim": "true",
-            "jsonType.label": "String",
-            "user.attribute": "username",
-            "userinfo.token.claim": "true"
-          },
-          "consentRequired": false,
-          "id": "f4e0f13a-df4e-4d2a-91c4-e83eb588326d",
-          "name": "username",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usermodel-property-mapper"
-        },
-        {
-          "config": {
-            "access.token.claim": "true",
             "claim.name": "profile",
             "id.token.claim": "true",
             "jsonType.label": "String",
