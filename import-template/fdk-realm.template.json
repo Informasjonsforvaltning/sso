@@ -2061,6 +2061,21 @@
           "protocolMapper": "oidc-usermodel-attribute-mapper"
         },
         {
+          "id": "6aa168db-0a2e-4143-8f8b-4d4885a8e611",
+          "name": "username",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-script-based-protocol-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "user_name",
+            "jsonType.label": "String",
+            "script": "var UUID = Java.type(\"java.util.UUID\");\n\nvar secretSalt = \"${FDK_CLIENT_SECRET}\";\nvar uuidBase = secretSalt + user.getUsername();\n\nexports = UUID.nameUUIDFromBytes(uuidBase.getBytes());"
+          }
+        },
+        {
           "config": {
             "access.token.claim": "true",
             "claim.name": "website",
