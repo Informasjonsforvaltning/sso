@@ -524,21 +524,6 @@
         {
           "config": {
             "access.token.claim": "true",
-            "claim.name": "user_name",
-            "id.token.claim": "true",
-            "jsonType.label": "String",
-            "user.attribute": "username",
-            "userinfo.token.claim": "true"
-          },
-          "consentRequired": false,
-          "id": "b2a2bd8a-33e1-467a-b8a8-f4c6e3c1b8c9",
-          "name": "username",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usermodel-property-mapper"
-        },
-        {
-          "config": {
-            "access.token.claim": "true",
             "id.token.claim": "false",
             "included.client.audience": "concept-catalogue",
             "userinfo.token.claim": "false"
@@ -623,21 +608,6 @@
       ],
       "protocol": "openid-connect",
       "protocolMappers": [
-        {
-          "config": {
-            "access.token.claim": "true",
-            "claim.name": "user_name",
-            "id.token.claim": "true",
-            "jsonType.label": "String",
-            "user.attribute": "username",
-            "userinfo.token.claim": "true"
-          },
-          "consentRequired": false,
-          "id": "e92da100-cc48-4f30-a7a4-7a144b2c0702",
-          "name": "username",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usermodel-property-mapper"
-        },
         {
           "config": {
             "access.token.claim": "true",
@@ -801,21 +771,6 @@
         {
           "config": {
             "access.token.claim": "true",
-            "claim.name": "user_name",
-            "id.token.claim": "true",
-            "jsonType.label": "String",
-            "user.attribute": "username",
-            "userinfo.token.claim": "true"
-          },
-          "consentRequired": false,
-          "id": "b7ef5108-7430-4ff0-9d33-8ded7936bf85",
-          "name": "username",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usermodel-property-mapper"
-        },
-        {
-          "config": {
-            "access.token.claim": "true",
             "id.token.claim": "false",
             "included.client.audience": "concept-catalogue",
             "userinfo.token.claim": "false"
@@ -937,21 +892,6 @@
       ],
       "protocol": "openid-connect",
       "protocolMappers": [
-        {
-          "config": {
-            "access.token.claim": "true",
-            "claim.name": "user_name",
-            "id.token.claim": "true",
-            "jsonType.label": "String",
-            "user.attribute": "username",
-            "userinfo.token.claim": "true"
-          },
-          "consentRequired": false,
-          "id": "f5f9dc77-626a-44b4-abc2-d5b913a5e093",
-          "name": "username",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usermodel-property-mapper"
-        },
         {
           "config": {
             "access.token.claim": "true",
