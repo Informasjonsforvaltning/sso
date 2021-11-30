@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="${properties.kcHtmlClass!}">
 
 <head>
-    <#assign p = social.providers[2]>
+    <#assign p = social.providers[1]>
     <meta http-equiv="refresh" content="0; url='${p.loginUrl}'" />
 </head>
 
