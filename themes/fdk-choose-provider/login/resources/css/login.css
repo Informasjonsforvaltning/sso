@@ -28,6 +28,7 @@
     flex-flow: column;
     font-size: 1.6rem;
     height: 100%;
+    padding-top: 0;
 }
 
 /*title banner size and colour*/
