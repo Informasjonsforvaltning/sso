@@ -1,13 +1,8 @@
 name: Deploy to demo
-# TODO: revert back to repo dispatch before merging + fix docker image name
+
 on:
-  pull_request:
-    types: [ready_for_review, opened, reopened, synchronize]
-    branches:
-      - main
-#on:
-#  repository_dispatch:
-#    types: [deploy-demo]
+  repository_dispatch:
+    types: [deploy-demo]
 
 jobs:
   deploy-demo:
@@ -20,18 +15,16 @@ jobs:
           helm repo add fdk https://informasjonsforvaltning.github.io/helm-chart/
           helm fetch --untar --untardir ./helm fdk/sso
           helm template \
-            --set DOCKER_IMAGE_NAME="eu.gcr.io/digdir-fdk-infra/sso:staging_latest" \
+            --set DOCKER_IMAGE_NAME="eu.gcr.io/digdir-fdk-infra/sso:${{ github.event.client_payload.sha }}" \
             -f ./helm/sso/values/demo.yaml \
             ./helm/sso/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
-#           --set DOCKER_IMAGE_NAME="eu.gcr.io/digdir-fdk-infra/sso:${{ github.event.client_payload.sha }}" \
 
-      - name: Setup gcloud CLI for deploy
-        uses: google-github-actions/setup-gcloud@master
+      - name: Auth gcloud CLI for deploy
+        uses: google-github-actions/auth@main
         with:
-          service_account_key: ${{ secrets.DIGDIR_FDK_DEV_AUTODEPLOY }}
-          export_default_credentials: true
+          credentials_json: ${{ secrets.DIGDIR_FDK_DEV_AUTODEPLOY }}
 
       - name: Deploy to GCP & check status
         run: |
