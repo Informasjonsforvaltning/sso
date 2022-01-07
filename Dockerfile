@@ -12,7 +12,7 @@ RUN mvn clean package --no-transfer-progress
 
 ###################################
 
-FROM jboss/keycloak:15.0.2
+FROM jboss/keycloak:16.1.0
 
 # copy deployment modules from maven environment
 COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/jboss/keycloak/standalone/deployments/rest-user-mapper.jar
@@ -27,4 +27,4 @@ COPY themes/fdk /opt/jboss/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/jboss/keycloak/themes/fdk-choose-provider
 COPY themes/fdk-fbh /opt/jboss/keycloak/themes/fdk-fbh
 
-CMD ["-Dkeycloak.profile.feature.upload_scripts=enabled"]
+CMD ["-Dkeycloak.profile.feature.upload_scripts=enabled", "-Dnashorn.args=--no-deprecation-warning"]
