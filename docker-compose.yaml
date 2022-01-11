@@ -14,6 +14,8 @@ services:
       - DB_DATABASE=keycloak
       - DB_USER=keycloak
       - DB_PASSWORD=keycloak
+      - USER_API_KEY=user-api-key
+      - FDK_CLIENT_SECRET=secret
     depends_on:
       - sso-db
 
