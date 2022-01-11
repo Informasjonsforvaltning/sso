@@ -1,0 +1,21 @@
+{
+    "authenticators": [ ],
+    "policies": [ ],
+    "mappers": [
+        {
+            "name": "FDK terms version mapper",
+            "fileName": "terms-mapper.js",
+            "description": "Maps latest terms version"
+        },
+        {
+            "name": "FDK authorities mapper",
+            "fileName": "authorities-mapper.js",
+            "description": "Maps FDK authorities"
+        },
+        {
+            "name": "FDK accepted terms version mapper",
+            "fileName": "accepted-terms-mapper.js",
+            "description": "Maps the latest terms version accepted by the organization"
+        }
+    ]
+}
