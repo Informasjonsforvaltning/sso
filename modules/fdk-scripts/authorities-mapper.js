@@ -23,27 +23,21 @@ if (isDifiLogin) {
     var orgs = user.getAttribute("orgnr");
     var roles = user.getAttribute("difi_roles");
 
-    var firstInList = true;
     urlBuilder.append("difi?roles=");
 
-    forEach.call(roles, function(role) {
-        if (firstInList !== true) {
+    forEach.call(roles, function(role, index) {
+        if (index !== 0) {
             urlBuilder.append(",");
-        } else {
-            firstInList = false;
         }
 
         urlBuilder.append(role.replace("brukar ", ""));
     });
 
-    firstInList = true;
     urlBuilder.append("&orgs=");
 
-    forEach.call(orgs, function(org) {
-        if (firstInList !== true) {
+    forEach.call(orgs, function(org, index) {
+        if (index !== 0) {
             urlBuilder.append(",");
-        } else {
-            firstInList = false;
         }
 
         urlBuilder.append(org);
@@ -53,25 +47,19 @@ if (isDifiLogin) {
     var roles = user.getAttribute("ok_roles");
     var orgnames = user.getAttribute("ok_orgnames");
 
-    var firstInList = true;
     urlBuilder.append("oslokommune?roles=");
-    forEach.call(roles, function(role) {
-        if (firstInList !== true) {
+    forEach.call(roles, function(role, index) {
+        if (index !== 0) {
             urlBuilder.append(",");
-        } else {
-            firstInList = false;
         }
 
         urlBuilder.append(role);
     });
 
-    var firstInList = true;
     urlBuilder.append("&orgnames=");
-    forEach.call(orgnames, function(orgname) {
-        if (firstInList !== true) {
+    forEach.call(orgnames, function(orgname, index) {
+        if (index !== 0) {
             urlBuilder.append(",");
-        } else {
-            firstInList = false;
         }
 
         urlBuilder.append(orgname);

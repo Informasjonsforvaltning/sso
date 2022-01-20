@@ -21,14 +21,11 @@ forEach.call(user.getAttribute("login_type"), function(type){
 
 if (isDifiLogin) {
     var orgs = user.getAttribute("orgnr");
-    var firstInList = true;
     urlBuilder.append("difi?orgs=");
 
-    forEach.call(orgs, function(org) {
-        if (firstInList !== true) {
+    forEach.call(orgs, function(org, index) {
+        if (index !== 0) {
             urlBuilder.append(",");
-        } else {
-            firstInList = false;
         }
 
         urlBuilder.append(org);
@@ -36,14 +33,11 @@ if (isDifiLogin) {
 
 } else if (isOkLogin) {
     var orgnames = user.getAttribute("ok_orgnames");
-    var firstInList = true;
     urlBuilder.append("oslokommune?orgnames=");
 
-    forEach.call(orgnames, function(org) {
-        if (firstInList !== true) {
+    forEach.call(orgnames, function(org, index) {
+        if (index !== 0) {
             urlBuilder.append(",");
-        } else {
-            firstInList = false;
         }
 
         urlBuilder.append(org);
