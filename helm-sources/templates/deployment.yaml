@@ -71,6 +71,16 @@ spec:
             secretKeyRef:
               name: postgres-{{ required "Missing value NAMESPACE" .Values.NAMESPACE }}
               key: PASSWORD
+        - name: USER_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: common-{{ required "Missing value NAMESPACE" .Values.NAMESPACE }}
+              key: SSO_API_KEY
+        - name: FDK_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: sso-{{ required "Missing value NAMESPACE" .Values.NAMESPACE }}
+              key: FDK_CLIENT_SECRET
         name: sso
         image: {{ required "Missing value DOCKER_IMAGE_NAME" .Values.DOCKER_IMAGE_NAME }}
         imagePullPolicy: Always
