@@ -35,8 +35,6 @@ COPY themes/fdk-choose-provider /opt/keycloak/themes/fdk-choose-provider
 COPY themes/fdk-fbh /opt/keycloak/themes/fdk-fbh
 
 ENV KC_HOSTNAME_STRICT="false" \
-    KC_PROXY="edge" \
-    KEYCLOAK_ADMIN="$KEYCLOAK_USER" \
-    KEYCLOAK_ADMIN_PASSWORD="$KEYCLOAK_PASSWORD"
+    KC_PROXY="edge"
 
 CMD ["-Dkeycloak.profile.feature.scripts=enabled", "-Dnashorn.args=--no-deprecation-warning", "--verbose", "start"]
