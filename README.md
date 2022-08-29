@@ -1,3 +1,5 @@
+foo
+
 When there is no client registered for sso, the configuration can be tested with the account page as client:
 
 xxxx/auth/realms/fdk/account
