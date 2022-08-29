@@ -33,3 +33,5 @@ COPY --from=themes /opt/jboss/keycloak/themes/keycloak /opt/keycloak/themes/fdk-
 COPY themes/fdk /opt/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/keycloak/themes/fdk-choose-provider
 COPY themes/fdk-fbh /opt/keycloak/themes/fdk-fbh
+
+CMD ["-Dkeycloak.profile.feature.scripts=enabled", "-Dnashorn.args=--no-deprecation-warning", "start"]
