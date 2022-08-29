@@ -26,6 +26,7 @@ public class RestUserAttributeMapper extends AbstractClaimMapper {
     public static final String USER_LOOKUP_URL_PREFIX = "user_lookup_url_prefix";
     public static final String PROVIDER_ID = "rest-user-attribute-idp-mapper";
     private static final List<ProviderConfigProperty> configProperties = new ArrayList<>();
+    private static final int TIMEOUT_MILLIS = 10000;
 
     static {
         ProviderConfigProperty property;
@@ -119,8 +120,11 @@ public class RestUserAttributeMapper extends AbstractClaimMapper {
         String urlPrefix = mapperModel.getConfig().get(USER_LOOKUP_URL_PREFIX);
         String userUrl = urlPrefix + userId;
         try {
-            return SimpleHttp.doGet(userUrl, session).asJson(new TypeReference<Map<String, String>>() {
-            });
+
+            return SimpleHttp.doGet(userUrl, session)
+                    .connectTimeoutMillis(TIMEOUT_MILLIS)
+                    .connectionRequestTimeoutMillis(TIMEOUT_MILLIS)
+                    .asJson(new TypeReference<Map<String, String>>() {});
         } catch (IOException e) {
             throw new RuntimeException("Authentication error, user not found");
         }
