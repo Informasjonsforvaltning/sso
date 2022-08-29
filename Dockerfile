@@ -18,7 +18,7 @@ RUN jar -cvf fdk-scripts.jar *
 ###################################
 
 FROM quay.io/keycloak/keycloak:16.1.0 as themes
-FROM quay.io/keycloak/keycloak:19.0.0
+FROM quay.io/keycloak/keycloak:19.0.1
 
 # copy deployment modules from maven environment
 # COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
@@ -34,4 +34,6 @@ COPY themes/fdk /opt/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/keycloak/themes/fdk-choose-provider
 COPY themes/fdk-fbh /opt/keycloak/themes/fdk-fbh
 
-CMD ["-Dkeycloak.profile.feature.scripts=enabled", "-Dnashorn.args=--no-deprecation-warning", "--verbose", "start", "–-hostname-strict=false"]
+ENV KC_HOSTNAME_STRICT="false"
+
+CMD ["-Dkeycloak.profile.feature.scripts=enabled", "-Dnashorn.args=--no-deprecation-warning", "--verbose", "start"]
