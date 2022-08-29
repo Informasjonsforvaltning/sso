@@ -25,9 +25,9 @@ COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloa
 COPY --from=build /tmp/fdk-scripts/fdk-scripts.jar /opt/keycloak/providers/fdk-scripts.jar
 
 # copy keycloak theme as fdk theme.
-COPY --form=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk
-COPY --form=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-choose-provider
-COPY --form=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-fbh
+COPY --from=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk
+COPY --from=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-choose-provider
+COPY --from=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-fbh
 
 # copy modified files from host ( 3 files) - trying to copy only changed files...
 COPY themes/fdk /opt/keycloak/themes/fdk
