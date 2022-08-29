@@ -1,4 +1,4 @@
-FROM maven:3.6.3-ibmjava-8-alpine AS MAVEN_BUILD_ENVIRONMENT
+FROM maven:3.6.3-ibmjava-8-alpine AS build
 
 # use maven environment to build java modules
 
@@ -17,16 +17,17 @@ RUN jar -cvf fdk-scripts.jar *
 
 ###################################
 
+FROM quay.io/keycloak/keycloak:16.0.1 as themes
 FROM quay.io/keycloak/keycloak:19.0.0
 
 # copy deployment modules from maven environment
-COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
-COPY --from=MAVEN_BUILD_ENVIRONMENT /tmp/fdk-scripts/fdk-scripts.jar /opt/keycloak/providers/fdk-scripts.jar
+COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
+COPY --from=build /tmp/fdk-scripts/fdk-scripts.jar /opt/keycloak/providers/fdk-scripts.jar
 
 # copy keycloak theme as fdk theme.
-RUN cp -r /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk
-RUN cp -r /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-choose-provider
-RUN cp -r /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-fbh
+COPY --form=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk
+COPY --form=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-choose-provider
+COPY --form=themes /opt/keycloak/themes/keycloak /opt/keycloak/themes/fdk-fbh
 
 # copy modified files from host ( 3 files) - trying to copy only changed files...
 COPY themes/fdk /opt/keycloak/themes/fdk
