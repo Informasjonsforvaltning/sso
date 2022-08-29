@@ -18,7 +18,7 @@ RUN jar -cvf fdk-scripts.jar *
 ###################################
 
 FROM quay.io/keycloak/keycloak:16.1.0 as themes
-FROM quay.io/keycloak/keycloak:19.0.1
+FROM quay.io/keycloak/keycloak:17.0.0
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
