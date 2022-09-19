@@ -1,4 +1,4 @@
-FROM maven:3.6.3-ibmjava-8-alpine AS build
+FROM maven:3.8.6-openjdk-11-slim AS build
 
 # use maven environment to build java modules
 
@@ -21,7 +21,7 @@ FROM quay.io/keycloak/keycloak:16.1.0 as themes
 
 ###################################
 
-FROM quay.io/keycloak/keycloak:18.0.2
+FROM quay.io/keycloak/keycloak:19.0.2
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
@@ -37,11 +37,14 @@ COPY themes/fdk /opt/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/keycloak/themes/fdk-choose-provider
 COPY themes/fdk-fbh /opt/keycloak/themes/fdk-fbh
 
-RUN sh opt/keycloak/bin/kc.sh build
-
 ENV KC_HOSTNAME_STRICT="false" \
-    KC_PROXY="edge" \
-    KC_HEALTH_ENABLED="true" \
-    KC_METRICS_ENABLED="true"
+    KC_PROXY="edge"
 
-CMD ["-Dkeycloak.profile.feature.scripts=enabled", "-Dnashorn.args=--no-deprecation-warning", "--verbose", "start"]
+RUN sh opt/keycloak/bin/kc.sh build \
+    --db postgres \
+    --http-relative-path /auth \
+    --health-enabled true \
+    --metrics-enabled true \
+    --features scripts
+
+CMD ["--verbose", "start", "--optimized"]
