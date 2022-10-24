@@ -9,13 +9,13 @@ var urlBuilder = new StringBuilder();
 urlBuilder.append("http://user-api:8080/terms/");
 
 var isDifiLogin = false;
-var isOkLogin = false;
+var isBrregLogin = false;
 forEach.call(user.getAttribute("login_type"), function(type){
     if (type === "difi") {
         isDifiLogin = true;
     }
-    if (type === "ok") {
-        isOkLogin = true;
+    if (type === "brreg") {
+        isBrregLogin = true;
     }
 });
 
@@ -31,18 +31,8 @@ if (isDifiLogin) {
         urlBuilder.append(org);
     });
 
-} else if (isOkLogin) {
-    var orgnames = user.getAttribute("ok_orgnames");
-    urlBuilder.append("oslokommune?orgnames=");
-
-    forEach.call(orgnames, function(org, index) {
-        if (index !== 0) {
-            urlBuilder.append(",");
-        }
-
-        urlBuilder.append(org);
-    });
-
+} else if (isBrregLogin) {
+    urlBuilder.append("brreg");
 } else {
     urlBuilder.append("altinn/");
     urlBuilder.append(user.username);
