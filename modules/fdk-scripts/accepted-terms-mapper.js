@@ -14,7 +14,7 @@ forEach.call(user.getAttribute("login_type"), function(type){
     if (type === "difi") {
         isDifiLogin = true;
     }
-    if (type === "brrg") {
+    if (type === "brreg") {
         isBrregLogin = true;
     }
 });
