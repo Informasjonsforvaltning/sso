@@ -1,37 +1,22 @@
 var System = Java.type("java.lang.System");
+var JavaString = Java.type("java.lang.String");
 var StringBuilder = Java.type("java.lang.StringBuilder");
 var SimpleHttp = Java.type("org.keycloak.broker.provider.util.SimpleHttp");
-
-var forEach = Array.prototype.forEach;
+var Collectors = Java.type("java.util.stream.Collectors");
 
 var urlBuilder = new StringBuilder();
 
 urlBuilder.append("http://user-api:8080/terms/");
 
-var isDifiLogin = false;
-var isBrregLogin = false;
-forEach.call(user.getAttribute("login_type"), function(type){
-    if (type === "difi") {
-        isDifiLogin = true;
-    }
-    if (type === "brreg") {
-        isBrregLogin = true;
-    }
-});
+var loginType = user.getFirstAttribute("login_type");
 
-if (isDifiLogin) {
-    var orgs = user.getAttribute("orgnr");
+if (loginType === "difi") {
+    var orgs = user.getAttributeStream("orgnr")
+        .collect(Collectors.toUnmodifiableList());
     urlBuilder.append("difi?orgs=");
+    urlBuilder.append(JavaString.join(",", orgs));
 
-    forEach.call(orgs, function(org, index) {
-        if (index !== 0) {
-            urlBuilder.append(",");
-        }
-
-        urlBuilder.append(org);
-    });
-
-} else if (isBrregLogin) {
+} else if (loginType === "brreg") {
     urlBuilder.append("brreg");
 } else {
     urlBuilder.append("altinn/");

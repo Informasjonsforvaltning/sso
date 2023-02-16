@@ -16,8 +16,8 @@
     </licenses>
 
     <properties>
-        <version.compiler.maven.plugin>3.8.0</version.compiler.maven.plugin>
-        <keycloak-version>19.0.2</keycloak-version>
+        <version.compiler.maven.plugin>3.10.1</version.compiler.maven.plugin>
+        <keycloak-version>20.0.3</keycloak-version>
     </properties>
 
     <build>
@@ -29,8 +29,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${version.compiler.maven.plugin}</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <source>11</source>
+                        <target>11</target>
                     </configuration>
                 </plugin>
             </plugins>
