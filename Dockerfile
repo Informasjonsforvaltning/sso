@@ -21,7 +21,7 @@ FROM quay.io/keycloak/keycloak:16.1.0 as themes
 
 ###################################
 
-FROM quay.io/keycloak/keycloak:19.0.2
+FROM quay.io/keycloak/keycloak:20.0.3
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
