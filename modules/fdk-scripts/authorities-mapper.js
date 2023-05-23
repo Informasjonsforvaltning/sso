@@ -25,7 +25,11 @@ if (loginType === "difi") {
     urlBuilder.append(JavaString.join(",", orgs));
 
 } else if (loginType === "brreg") {
-    urlBuilder.append("brreg");
+    var groups = user.getAttributeStream("brreg_groups")
+        .collect(Collectors.toUnmodifiableList());
+
+    urlBuilder.append("brreg?groups=");
+    urlBuilder.append(JavaString.join(",", groups));
 } else {
     urlBuilder.append("altinn/");
     urlBuilder.append(user.username);
