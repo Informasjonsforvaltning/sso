@@ -23,13 +23,18 @@ if (loginType === "difi") {
 
     urlBuilder.append("&orgs=");
     urlBuilder.append(JavaString.join(",", orgs));
-
 } else if (loginType === "brreg") {
-    var groups = user.getAttributeStream("brreg_groups")
+    var brregGroups = user.getAttributeStream("brreg_groups")
         .collect(Collectors.toUnmodifiableList());
 
     urlBuilder.append("brreg?groups=");
-    urlBuilder.append(JavaString.join(",", groups));
+    urlBuilder.append(JavaString.join(",", brregGroups));
+} else if (loginType === "skatt") {
+    var skattGroups = user.getAttributeStream("skatt_groups")
+        .collect(Collectors.toUnmodifiableList());
+
+    urlBuilder.append("skatt?groups=");
+    urlBuilder.append(JavaString.join(",", skattGroups));
 } else {
     urlBuilder.append("altinn/");
     urlBuilder.append(user.username);

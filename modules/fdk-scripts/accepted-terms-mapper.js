@@ -18,6 +18,8 @@ if (loginType === "difi") {
 
 } else if (loginType === "brreg") {
     urlBuilder.append("brreg");
+} else if (loginType === "skatt") {
+    urlBuilder.append("skatt");
 } else {
     urlBuilder.append("altinn/");
     urlBuilder.append(user.username);
