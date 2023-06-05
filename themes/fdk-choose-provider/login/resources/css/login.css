@@ -81,10 +81,13 @@
 }
 
 .fdk-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     border-radius: 5px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-    background-color: white !important;
+    background-color: white;
     padding: 3rem;
+    gap: 1em;
 }
 
 .fdk-card > p {
@@ -93,12 +96,10 @@
 
 .choose_idp_button {
     text-decoration: none;
-    margin-bottom: 1em;
     color: #2D3741;
     background-color: #D5D7D9 ;
     font-size: 1.5rem;
     line-height: 1.5rem;
-    box-shadow: 0 2px 4px rgba(18, 22, 25, 0.20);
     padding: .8em .9em;
     display: inline-block;
     text-align: center;
@@ -106,12 +107,66 @@
     user-select: none;
     border: 1px solid transparent;
     border-radius: 0.25rem;
+    outline-color: orange !important;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: fit-content;
+}
+
+.choose_idp_button > span {
+    white-space: nowrap;
 }
 
 .choose_idp_button:hover {
     text-decoration: none;
-    color: #FFFFFF;
+    color: #2d3741;
+    background-color: #ffffff;
+    border: 1px solid #2d3741;
+}
+
+.choose_idp_button:focus {
+    color: #2d3741;
+}
+
+.choose_brreg_idp_button {
+    color: #ffffff;
+    background-color: #013551;
+}
+
+.choose_brreg_idp_button:hover {
+    color: #013551;
+    background-color: #f2fcfe;
+    border: 1px solid #013551;
+}
+
+.choose_brreg_idp_button:focus {
+    color: #ffffff;
+}
+
+.choose_skatt_idp_button {
+    color: #ffffff;
+    background-color: #6f2c3f;
+}
+
+.choose_skatt_idp_button:hover {
+    color: #6f2c3f;
+    background-color: #f7e2e8;
+    border: 1px solid #6f2c3f;
+}
+
+.choose_skatt_idp_button:focus {
+    color: #ffffff;
+}
+
+.logo-wrapper-brreg > img {
+    max-height: 35px;
+    width: auto;
+}
+
+.logo-wrapper-skatt > img {
+    max-height: 60px;
+    width: auto;
+    margin-top: -15px;
+    margin-bottom: -10px; 
 }
 
 #fdk-footer {
@@ -169,14 +224,14 @@ ul.fdk-footer-links {
     }
 }
 
-@media (min-width: 992px) {
-    .container-fluid {
-        max-width: 960px;
+@media (max-width: 992px) {
+    .fdk-button-and-img-container {
+        flex-direction: column;
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     .container-fluid {
-        max-width: 1140px;
+        max-width: 960px;
     }
 }
