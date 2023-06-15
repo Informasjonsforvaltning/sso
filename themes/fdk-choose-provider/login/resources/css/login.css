@@ -31,6 +31,10 @@
     padding-top: 0;
 }
 
+html {
+    background: none !important; /* necessary to override KeyCloak background */
+}
+
 /*title banner size and colour*/
 #kc-header {
     overflow: visible;
