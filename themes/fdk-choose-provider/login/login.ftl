@@ -54,7 +54,7 @@
                 <div class="col-xs-12">
                     <p>
                         <strong>Trenger du eller andre tilgang?</strong><br>
-                        Du kan få tilgang eller gi andre tilgang til å registrere datasettbeskrivelser, API-beskrivelser og begreper, og administrere høsting
+                        Du kan få tilgang eller gi andre tilgang til å registrere datasettbeskrivelser, API-beskrivelser, begreper og behandlingsaktiviteter, og administrere høsting
                         for din virksomhet. <a href="https://samarbeid.digdir.no/felles-datakatalog/ta-i-bruk-felles-datakatalog/1619">Lær mer om hvordan man får og gir tilgang.</a>
                     </p>
                 </div>
