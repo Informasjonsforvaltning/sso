@@ -1,6 +1,6 @@
 <#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayWide=false>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" class="${properties.kcHtmlClass!}" lang="nb-NO">
+<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="nb-NO">
 
 <head>
     <meta charset="utf-8">
@@ -21,8 +21,9 @@
 </#if>
 </head>
 
-<body class="${properties.kcBodyClass!}">
-<div class="${properties.kcLoginClass!}">
+
+<body class="login-pf-body">
+<div class="login-pf-page">
 
     <div id="kc-header">
         <div class="container-fluid">

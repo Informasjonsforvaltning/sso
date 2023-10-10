@@ -17,20 +17,12 @@ RUN jar -cvf fdk-scripts.jar *
 
 ###################################
 
-FROM quay.io/keycloak/keycloak:16.1.0 as themes
-
-###################################
 
 FROM quay.io/keycloak/keycloak:20.0.3
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
 COPY --from=build /tmp/fdk-scripts/fdk-scripts.jar /opt/keycloak/providers/fdk-scripts.jar
-
-# copy keycloak theme as fdk theme.
-COPY --from=themes /opt/jboss/keycloak/themes/keycloak /opt/keycloak/themes/fdk
-COPY --from=themes /opt/jboss/keycloak/themes/keycloak /opt/keycloak/themes/fdk-choose-provider
-COPY --from=themes /opt/jboss/keycloak/themes/keycloak /opt/keycloak/themes/fdk-fbh
 
 # copy modified files from host ( 3 files) - trying to copy only changed files...
 COPY themes/fdk /opt/keycloak/themes/fdk
