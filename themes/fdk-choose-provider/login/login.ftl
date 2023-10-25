@@ -3,7 +3,7 @@
     <#if section = "form">
         <div class="container-fluid">
             <div id="kc-form" class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 pd-r">
                     <div class="fdk-card h-100 mb-5">
                         <p>For deg som har fått tilgang til tjenesten "Registrere i datakatalog" i Altinn.</p>
                         <#assign p = social.providers[0]>
@@ -23,7 +23,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 pd-r">
                     <div class="fdk-card h-100 mb-5">
                         <span class="logo-wrapper-brreg">
                             <img src="${url.resourcesPath}/img/logo-brreg.svg" alt="Brønnøysundregistrene">

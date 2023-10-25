@@ -3,36 +3,90 @@
 }
 
 .mb-5 {
-    margin-bottom: 5rem;
+    margin-bottom: 50px;
 }
 
 .d-flex {
     display: flex !important;
 }
 
+.col-sm-6 {
+    position: relative;
+    min-height: 1px;
+    float: left;
+}
+
+.col-xs-12 {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .align-items-center {
     align-items: center !important;
 }
 
-.login-pf body {
+.login-pf-body {
     background: url("../img/illustration-search-dark.svg");
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 30%;
     background-color: #EEEFF0;
     height: 100%;
+    margin: 0px;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    line-height: 1.66666667;
+}
+
+#kc-form {
+    display: table;
+}
+
+.navbar-nav {
+   margin: 7.5px -20px;
+   display: flex;
+}
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.navbar-nav__item > a {
+    color: #FFF;
+    font-size: 16px;
+}
+
+.login-pf {
+     background: none !important;  /* necessary to override KeyCloak background */
+     height: 100%;
 }
 
 .login-pf-page {
     display: flex;
     flex-flow: column;
-    font-size: 1.6rem;
+    font-size: 16px;
     height: 100%;
     padding-top: 0;
-}
-
-html {
-    background: none !important; /* necessary to override KeyCloak background */
 }
 
 /*title banner size and colour*/
@@ -60,9 +114,14 @@ html {
     display: none;
 }
 
+#fdk-nav > ul {
+    display: flex;
+    flex-direction: row;
+}
+
 .navbar-nav__item > a {
     color: #FFF;
-    font-size: 1.6rem;
+    font-size: 16px;
 }
 
 .navbar-nav__item > a.external_icon {
@@ -90,7 +149,7 @@ html {
     flex-direction: column;
     border-radius: 5px;
     background-color: white;
-    padding: 3rem;
+    padding: 30px;
     gap: 1em;
 }
 
@@ -98,19 +157,28 @@ html {
     margin-bottom: 0;
 }
 
+p {
+    margin: 0 0 10px;
+}
+
+a {
+    color: #0088ce;
+    text-decoration: none;
+}
+
 .choose_idp_button {
     text-decoration: none;
     color: #2D3741;
     background-color: #D5D7D9 ;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
+    font-size: 15px;
+    line-height: 15px;
     padding: .8em .9em;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;
-    border-radius: 0.25rem;
+    border-radius: 2.5px;
     outline-color: orange !important;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     width: fit-content;
@@ -175,7 +243,7 @@ html {
 
 #fdk-footer {
     color: #FFF;
-    font-size: 1.4rem;
+    font-size: 14px;
     margin-top: auto;
     overflow: visible;
     white-space: nowrap;
@@ -195,7 +263,7 @@ html {
 }
 
 .fdk-footer-link-header {
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -211,6 +279,22 @@ ul.fdk-footer-links {
     border-bottom: 1px solid #FFF;
 }
 
+.container-fluid {
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    margin-right: -20px;
+    margin-left: -20px;
+}
+
+.navbar-nav__item > a.external_icon {
+    align-items: center;
+    display: flex;
+}
 @media (min-width: 576px) {
     .container-fluid {
         max-width: 540px;
@@ -238,4 +322,15 @@ ul.fdk-footer-links {
     .container-fluid {
         max-width: 960px;
     }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .col-sm-6 {
+        width: 50%;
+        float: left;
+        }
 }
