@@ -1,4 +1,4 @@
-FROM maven:3.8.6-openjdk-11-slim AS build
+FROM maven:3.8-openjdk-17-slim AS build
 
 # use maven environment to build java modules
 
@@ -18,7 +18,7 @@ RUN jar -cvf fdk-scripts.jar *
 ###################################
 
 
-FROM quay.io/keycloak/keycloak:20.0.3
+FROM quay.io/keycloak/keycloak:22.0.4
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar

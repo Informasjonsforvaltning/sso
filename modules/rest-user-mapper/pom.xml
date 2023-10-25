@@ -16,8 +16,8 @@
     </licenses>
 
     <properties>
-        <version.compiler.maven.plugin>3.10.1</version.compiler.maven.plugin>
-        <keycloak-version>20.0.3</keycloak-version>
+        <version.compiler.maven.plugin>3.11.0</version.compiler.maven.plugin>
+        <keycloak-version>22.0.4</keycloak-version>
     </properties>
 
     <build>
@@ -29,8 +29,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${version.compiler.maven.plugin}</version>
                     <configuration>
-                        <source>11</source>
-                        <target>11</target>
+                        <source>17</source>
+                        <target>17</target>
                     </configuration>
                 </plugin>
             </plugins>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
-            <version>7.2</version>
+            <version>7.4</version>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
