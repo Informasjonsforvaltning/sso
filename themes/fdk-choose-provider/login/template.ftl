@@ -33,16 +33,16 @@
                     <nav id="fdk-nav">
                         <ul class="nav navbar-nav">
                             <li class="navbar-nav__item">
-                                <a href="https://registrering.fellesdatakatalog.digdir.no">Registrere data</a>
+                                <a href="${properties.fdkRegistrationUri}">Registrere data</a>
                             </li>
                             <li class="navbar-nav__item">
-                                <a href="https://admin.fellesdatakatalog.digdir.no">Høste data</a>
+                                <a href="${properties.fdkAdminGuiUri}">Høste data</a>
                             </li>
                             <li class="navbar-nav__item">
-                                <a class="external_icon" href="https://datalandsbyen.norge.no/">Datalandsbyen</a>
+                                <a class="external_icon" href="${properties.fdkCommunityUri}">Datalandsbyen</a>
                             </li>
                             <li class="navbar-nav__item">
-                                <a class="external_icon" href="https://data.norge.no">Søk i Felles datakatalog</a>
+                                <a class="external_icon" href="${properties.fdkPortalUri}">Gå til data.norge.no</a>
                             </li>
                         </ul>
                     </nav>
