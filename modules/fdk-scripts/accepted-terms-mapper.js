@@ -25,6 +25,11 @@ if (loginType === "difi") {
     urlBuilder.append(user.username);
 }
 
-var url = urlBuilder.toString()
+var url = urlBuilder.toString();
+var timeout = 30000;
 
-exports = SimpleHttp.doGet(url, keycloakSession).header("X-API-KEY", System.getenv().get("USER_API_KEY")).asString();
+exports = SimpleHttp.doGet(url, keycloakSession)
+    .socketTimeOutMillis(timeout)
+    .connectTimeoutMillis(timeout)
+    .header("X-API-KEY", System.getenv().get("USER_API_KEY"))
+    .asString();
