@@ -163,7 +163,7 @@ p {
 
 a {
     color: #0088ce;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .choose_idp_button {
