@@ -16,8 +16,8 @@
     </licenses>
 
     <properties>
-        <version.compiler.maven.plugin>3.11.0</version.compiler.maven.plugin>
-        <keycloak-version>22.0.4</keycloak-version>
+        <version.compiler.maven.plugin>3.13.0</version.compiler.maven.plugin>
+        <keycloak-version>24.0.5</keycloak-version>
     </properties>
 
     <build>
