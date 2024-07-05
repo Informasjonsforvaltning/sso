@@ -6,25 +6,22 @@
         </script>
         ${msg("frontchannel-logout.title")}
     <#elseif section = "form">
-        <p>${msg("frontchannel-logout.message")}</p>
-        <ul>
-        <#list logout.clients as client>
-            <li>
-                ${client.name}
-                <iframe src="${client.frontChannelLogoutUrl}" style="display:none;"></iframe>
-            </li>
-        </#list>
-        </ul>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>Vi logger deg ut, vennligst vent et øyeblikk.</p>
+                    <#list logout.clients as client>
+                        <iframe src="${client.frontChannelLogoutUrl}" style="display:none;"></iframe>
+                    </#list>                     
+                </div>
+            </div>
+        </div>
         <#if logout.logoutRedirectUri?has_content>
             <script>
-                function readystatechange(event) {
-                    if (document.readyState=='complete') {
-                        window.location.replace('${logout.logoutRedirectUri}');
-                    }
-                }
-                document.addEventListener('readystatechange', readystatechange);
+                setTimeout(() => {
+                    window.location.replace('${logout.logoutRedirectUri}');
+                }, 3000)
             </script>
-            <a id="continue" class="btn btn-primary" href="${logout.logoutRedirectUri}">${msg("doContinue")}</a>
-        </#if>
+        </#if> 
     </#if>
 </@layout.registrationLayout>
