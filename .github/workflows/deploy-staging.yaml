@@ -16,7 +16,6 @@ jobs:
       environment: staging
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
 
   deploy-sso:
     name: Deploy to staging environment
@@ -38,5 +37,3 @@ jobs:
     uses: Informasjonsforvaltning/workflows/.github/workflows/build.yaml@main
     with:
       java_version: '17'
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

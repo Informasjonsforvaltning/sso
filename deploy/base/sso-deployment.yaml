@@ -10,7 +10,7 @@ spec:
     matchLabels:
       fdk.service: sso
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:

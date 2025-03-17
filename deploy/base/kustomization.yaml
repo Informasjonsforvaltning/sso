@@ -6,5 +6,5 @@ resources:
   - sso-service.yaml
 images:
   - name: sso
-    newName: eu.gcr.io/digdir-fdk-infra/sso
+    newName: ghcr.io/informasjonsforvaltning/sso
     newTag: $(GIT_COMMIT_SHA)
