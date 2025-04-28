@@ -3,3 +3,4 @@
 target
 modules/rest-user-mapper/target
 .vscode
+.DS_Store
