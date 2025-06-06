@@ -45,4 +45,13 @@ spec:
               cpu: "100m"
             limits:
               memory: "1Gi"
+          env:
+            - name: KC_CACHE
+              value: ispn
+            - name: KC_CACHE_STACK
+              value: kubernetes
+            - name: JGROUPS_DISCOVERY_PROTOCOL
+              value: dns.DNS_PING
+            - name: JAVA_OPTS_APPEND
+              value: -Djgroups.dns.query=sso-headless.default.svc.cluster.local
       restartPolicy: Always

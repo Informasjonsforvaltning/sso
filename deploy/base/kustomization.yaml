@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - sso-deployment.yaml
   - sso-service.yaml
+  - sso-headless-service.yaml
 images:
   - name: sso
     newName: ghcr.io/informasjonsforvaltning/sso

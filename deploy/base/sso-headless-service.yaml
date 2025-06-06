@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sso-headless
+  labels:
+    fdk.service: sso
+spec:
+  clusterIP: None
+  selector:
+    fdk.service: sso
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
