@@ -18,7 +18,7 @@ RUN jar -cvf fdk-scripts.jar *
 ###################################
 
 
-FROM quay.io/keycloak/keycloak:25.0.5
+FROM quay.io/keycloak/keycloak:25.0.6
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
