@@ -88,16 +88,16 @@ spec:
             - containerPort: 9000
           livenessProbe:
             httpGet:
-              path: /auth/health/live
-              port: 9000
+              path: /auth/admin/master/console/
+              port: 8080
             initialDelaySeconds: 20
             periodSeconds: 30
             successThreshold: 1
             failureThreshold: 5
           readinessProbe:
             httpGet:
-              path: /auth/health/ready
-              port: 9000
+              path: /auth/admin/master/console/
+              port: 8080
             initialDelaySeconds: 20
             periodSeconds: 30
             successThreshold: 1
