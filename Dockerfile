@@ -18,7 +18,7 @@ RUN jar -cvf fdk-scripts.jar *
 ###################################
 
 
-FROM quay.io/keycloak/keycloak:25.0.6
+FROM quay.io/keycloak/keycloak:26.4.0
 
 # copy deployment modules from maven environment
 COPY --from=build /tmp/rest-user-mapper/target/rest-user-mapper.jar /opt/keycloak/providers/rest-user-mapper.jar
@@ -29,14 +29,7 @@ COPY themes/fdk /opt/keycloak/themes/fdk
 COPY themes/fdk-choose-provider /opt/keycloak/themes/fdk-choose-provider
 COPY themes/fdk-fbh /opt/keycloak/themes/fdk-fbh
 
-ENV KC_HOSTNAME_STRICT="false" \
-    KC_PROXY="edge"
-
-RUN sh opt/keycloak/bin/kc.sh build \
-    --db postgres \
-    --http-relative-path /auth \
-    --health-enabled true \
-    --metrics-enabled true \
-    --features scripts
-
-CMD ["--verbose", "start", "--optimized"]
+# Set permissions
+USER root
+RUN chown -R keycloak:keycloak /opt/keycloak/themes /opt/keycloak/providers
+USER keycloak

@@ -1,0 +1,21 @@
+name: Build production image and push to registry
+permissions:
+  contents: read
+  packages: write
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-sso:
+    name: Build when pull request is merged
+    uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
+    with:
+      app_name: sso
+      environment: prod
+      gh_environment: prod
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
