@@ -1,4 +1,4 @@
-FROM maven:3.8-openjdk-17-slim AS build
+FROM maven:3.9.11-eclipse-temurin-21 AS build
 
 # use maven environment to build java modules
 
