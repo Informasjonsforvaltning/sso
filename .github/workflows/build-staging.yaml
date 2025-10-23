@@ -17,7 +17,7 @@ jobs:
       app_name: sso
       environment: staging
       gh_environment: staging
-      version: 26.4.0
+      version: 26.4.2
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
