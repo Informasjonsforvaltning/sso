@@ -16,8 +16,9 @@
     </licenses>
 
     <properties>
-        <version.compiler.maven.plugin>3.13.0</version.compiler.maven.plugin>
-        <keycloak-version>25.0.6</keycloak-version>
+        <version.compiler.maven.plugin>3.14.1</version.compiler.maven.plugin>
+        <keycloak-version>26.4.4</keycloak-version>
+        <keycloak-admin-client-version>26.0.7</keycloak-admin-client-version>
     </properties>
 
     <build>
@@ -45,7 +46,7 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-admin-client</artifactId>
-            <version>${keycloak-version}</version>
+            <version>${keycloak-admin-client-version}</version>
         </dependency>
         <dependency>
             <groupId>org.keycloak</groupId>
