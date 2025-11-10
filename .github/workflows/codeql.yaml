@@ -15,12 +15,22 @@ on:
     - cron: '0 2 * * *'
 
 jobs:
-  codeql:
+  codeql-javascript:
+    name: Run codeql scan
+    if: github.event.pull_request.draft == false
+    uses: Informasjonsforvaltning/workflows/.github/workflows/codeql.yaml@main
+    with:
+      language: javascript
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  codeql-java:
     name: Run codeql scan
     if: github.event.pull_request.draft == false
     uses: Informasjonsforvaltning/workflows/.github/workflows/codeql.yaml@main
     with:
       language: java
       java_version: '21'
+      working_directory: modules/rest-user-mapper
     secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
