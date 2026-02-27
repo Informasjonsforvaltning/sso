@@ -17,8 +17,8 @@
 
     <properties>
         <version.compiler.maven.plugin>3.14.1</version.compiler.maven.plugin>
-        <keycloak-version>26.4.4</keycloak-version>
-        <keycloak-admin-client-version>26.0.7</keycloak-admin-client-version>
+        <keycloak-version>26.5.4</keycloak-version>
+        <keycloak-admin-client-version>26.0.8</keycloak-admin-client-version>
     </properties>
 
     <build>
