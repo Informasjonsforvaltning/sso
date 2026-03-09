@@ -16,6 +16,6 @@ jobs:
       app_name: sso
       environment: prod
       gh_environment: prod
-      version: 26.5.4
+      version: 26.5.5
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
