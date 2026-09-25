@@ -35,6 +35,11 @@ if (loginType === "difi") {
 
     urlBuilder.append("skatt?groups=");
     urlBuilder.append(JavaString.join(",", skattGroups));
+} else if (loginType === "ansattporten") {
+    urlBuilder.append("ansattporten?details=");
+
+    var authDetails = user.getAttributeStream("ansattporten_authorization_details");
+    urlBuilder.append(btoa(authDetails));
 } else {
     urlBuilder.append("altinn/");
     urlBuilder.append(user.username);
