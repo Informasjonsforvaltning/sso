@@ -11,19 +11,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Registers a processor for the Ansattporten RAR type {@code ansattporten:altinn:resource}.
- *
- * <p>Keycloak validates every {@code authorization_details} entry on its authorize endpoint against the
- * registered processors and rejects unknown types with {@code invalid_request}. Without this factory an
- * application cannot ask Keycloak to forward a representation request to the Ansattporten identity
- * provider, even though the provider's "Forwarded query parameters" setting is meant for exactly that.
- * The provider id must equal the RAR type, because Keycloak looks processors up by type.
- *
- * <p>The Altinn resources a client may ask for are read from the environment variable
- * {@code ANSATTPORTEN_ALTINN_RESOURCES} (comma separated resource ids, without the {@code urn:altinn:resource:}
- * prefix). The default is the three data.norge.no access resources.
- */
 public class AnsattportenAuthorizationDetailsProcessorFactory implements AuthorizationDetailsProcessorFactory {
 
     public static final String PROVIDER_ID = AnsattportenAuthorizationDetailsProcessor.TYPE;

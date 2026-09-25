@@ -10,24 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Pass-through processor for the Ansattporten RAR type {@code ansattporten:altinn:resource}.
- *
- * <p>Its only job is to let an {@code authorization_details} entry of this type through Keycloak's request
- * validation so that the entry is stored on the authentication session and forwarded to the Ansattporten
- * identity provider. Keycloak never grants anything itself here; what the user actually chose to represent
- * comes back from Ansattporten in the brokered id_token and is handled by identity provider mappers. For that
- * reason the token endpoint methods return nothing, so Keycloak's own token response carries no
- * {@code authorization_details}.
- *
- * <p>Only resources on the configured allowlist are accepted, because Ansattporten does no access control of
- * its own on RAR types and any client of the realm can start a login. Note that Keycloak parses every entry
- * into its generic representation before this class sees it, and that representation declares {@code actions}
- * as a list. Ansattporten's documentation shows {@code "actions": "write,report"}; clients must send a JSON
- * array instead, {@code "actions": ["write","report"]}, or Keycloak rejects the request before it gets here.
- *
- * <p>Request model, see https://docs.digdir.no/docs/ansattporten/ansattporten_rar.html
- */
 public class AnsattportenAuthorizationDetailsProcessor implements AuthorizationDetailsProcessor<AuthorizationDetailsJSONRepresentation> {
 
     public static final String TYPE = "ansattporten:altinn:resource";
