@@ -53,5 +53,20 @@ Everything under `modules/` is packaged into `/opt/keycloak/providers/` in the i
     (comma separated ids, default: the three `datanorge-*` access resources). `actions` must be a
     JSON array, not the comma separated string in Ansattporten's docs. The type is advertised as
     `authorization_details_types_supported` in every realm's discovery document.
+  - `no.fdk.keycloak.mapper.JsonClaimAttributeMapper`: identity provider mapper that imports a
+    structured claim into a user attribute as JSON. Keycloak's built-in "Attribute Importer" calls
+    `toString()` on the value first, which turns an object claim into `{a=[{b=c}]}`. That has no
+    quoting, so a value containing a comma or an equals sign, such as an organisation name, becomes
+    ambiguous, and no JSON parser accepts it. Use this mapper for object and array claims, in place
+    of the built-in importer. Shown in the admin console as "JSON Claim To Attribute".
+    - On the Ansattporten identity provider, configure it with claim `authorization_details` and
+      user attribute `ansattporten_authorization_details`, which is the name
+      `modules/fdk-scripts/authorities-mapper.js` reads.
+    - The identity provider's sync mode must be `Force` or `Legacy`. Under `Import` Keycloak updates
+      no mapper after the first login, so the attribute would keep the first login's organisations.
+    - Array-of-object claims are read from the ID token and access token only. Keycloak's user info
+      path keeps only the textual members of an array, so such a claim arrives empty from there.
+    - When the claim is absent the attribute is set to an empty JSON array rather than left alone,
+      so a login without representation cannot leave an earlier login's organisations behind.
 - `fdk-scripts` (JavaScript): protocol and identity provider mappers deployed through the
   `scripts` feature.
