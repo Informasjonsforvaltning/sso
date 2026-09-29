@@ -3,6 +3,7 @@ var JavaString = Java.type("java.lang.String");
 var StringBuilder = Java.type("java.lang.StringBuilder");
 var SimpleHttp = Java.type("org.keycloak.broker.provider.util.SimpleHttp");
 var Collectors = Java.type("java.util.stream.Collectors");
+var Base64 = Java.type("java.util.Base64");
 
 var urlBuilder = new StringBuilder();
 
@@ -35,6 +36,12 @@ if (loginType === "difi") {
 
     urlBuilder.append("skatt?groups=");
     urlBuilder.append(JavaString.join(",", skattGroups));
+} else if (loginType === "ansattporten") {
+    urlBuilder.append("ansattporten?details=");
+
+    var authDetails = user.getAttributeStream("ansattporten_authorization_details")
+        .collect(Collectors.joining());
+    urlBuilder.append(Base64.getEncoder().encodeToString(new JavaString(authDetails).getBytes("UTF-8")));
 } else {
     urlBuilder.append("altinn/");
     urlBuilder.append(user.username);

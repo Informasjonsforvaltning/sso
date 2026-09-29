@@ -1,1 +1,2 @@
 no.fdk.keycloak.restuser.RestUserAttributeMapper
+no.fdk.keycloak.mapper.JsonClaimAttributeMapper
