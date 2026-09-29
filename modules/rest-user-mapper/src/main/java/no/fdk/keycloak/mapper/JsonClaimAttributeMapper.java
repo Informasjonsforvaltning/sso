@@ -24,20 +24,8 @@ import java.util.Set;
 /**
  * Imports a structured claim into a user attribute as JSON.
  *
- * <p>Keycloak's built-in "Attribute Importer" calls {@code toString()} on the claim value before storing it, so an
- * object claim such as Ansattporten's {@code authorization_details} is written as {@code {a=[{b=c}]}}. That form has
- * no quoting, which makes it ambiguous for any value containing a comma or an equals sign, such as an organisation
- * name, and no JSON parser accepts it. This mapper serialises the parsed claim back to JSON instead, so a consumer
- * of the attribute gets what the identity provider actually sent.
- *
- * <p>Array-of-object claims are read from the ID token and the access token only. The user info endpoint is served by
- * a Keycloak helper that keeps just the textual members of an array, so a claim like {@code authorization_details}
- * would arrive empty from there.
- *
- * <p>When the claim is absent the attribute is set to an empty JSON array rather than left alone. Leaving it would
- * keep a value from an earlier login, and for {@code authorization_details} that means a user would keep
- * representing an organisation they did not choose this time. This only holds where the effective sync mode is
- * {@code Force} or {@code Legacy}; under {@code Import} Keycloak updates no mapper after the first login.
+ * <p>Unlike the built-in Attribute Importer, which stores object claims via {@code toString()} (e.g.
+ * {@code {a=[{b=c}]}}), this mapper re-serialises the claim so consumers get valid JSON.
  */
 public class JsonClaimAttributeMapper extends AbstractClaimMapper {
 
@@ -53,11 +41,6 @@ public class JsonClaimAttributeMapper extends AbstractClaimMapper {
         KeycloakOIDCIdentityProviderFactory.PROVIDER_ID,
     };
 
-    /**
-     * Keycloak maps these four attribute names onto user properties rather than the attribute table, so writing JSON
-     * to one of them would rename the user or overwrite their email address. The built-in importer handles them
-     * deliberately; this mapper has no business touching them.
-     */
     private static final Set<String> RESERVED_ATTRIBUTES = Set.of(
         UserModel.USERNAME.toLowerCase(Locale.ROOT),
         UserModel.EMAIL.toLowerCase(Locale.ROOT),
@@ -65,8 +48,7 @@ public class JsonClaimAttributeMapper extends AbstractClaimMapper {
         UserModel.LAST_NAME.toLowerCase(Locale.ROOT)
     );
 
-    // Declared so Keycloak does not warn about an unsupported sync mode. It does not decide whether the mapper runs:
-    // Keycloak calls updateBrokeredUser under Force, updateBrokeredUserLegacy under Legacy, and neither under Import.
+    // Declared so Keycloak does not warn about unsupported sync modes; runtime still follows Force/Legacy/Import.
     private static final Set<IdentityProviderSyncMode> SYNC_MODES =
             new HashSet<>(Arrays.asList(IdentityProviderSyncMode.values()));
 
@@ -151,10 +133,7 @@ public class JsonClaimAttributeMapper extends AbstractClaimMapper {
         }
     }
 
-    /**
-     * @return the configured claim name, or null when it is missing. Without this guard Keycloak's claim lookup
-     *         throws on a null claim name and the user sees an error page instead of a login.
-     */
+    // @return claim name, or null if missing (avoids Keycloak throwing on a null claim name).
     private String claimName(IdentityProviderMapperModel mapperModel) {
         String claim = mapperModel.getConfig().get(CLAIM);
         if (claim == null || claim.isBlank()) {
@@ -186,8 +165,7 @@ public class JsonClaimAttributeMapper extends AbstractClaimMapper {
         try {
             return JsonSerialization.writeValueAsString(value);
         } catch (Exception e) {
-            // Fail closed: an unreadable claim must not leave an earlier login's value in place. Logged at error
-            // because the user ends up logged in with none of the authorities this claim grants.
+            // Fail closed so a prior login's value is not left in place.
             logger.errorf(e, "Could not serialise claim '%s' to JSON, storing an empty value instead",
                     mapperModel.getConfig().get(CLAIM));
             return EMPTY;
